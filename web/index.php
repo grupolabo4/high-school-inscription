@@ -1,5 +1,1 @@
-<?php
-
-echo "hello world!";
-echo phpinfo();
-?>
+<?php require_once("index.html")?>
