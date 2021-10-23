@@ -7,7 +7,4 @@ class Careers extends Model {
     }
 }
 
-$careers = new Careers();
-var_dump($careers->getAll());
-
 ?>

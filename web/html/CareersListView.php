@@ -8,5 +8,11 @@
 </head>
 <body>
     Aca iria el listado de Carreras disponibles con un link hacia las materias
+    <br>
+    <?php foreach($this->careers as $career) { ?>
+        <b><?=$career['name']?></b>
+        <br>
+        <!-- Aca meterlo adentro de un link, o agregarle un boton al lado, como nos guste mas -->
+    <?php } ?>
 </body>
 </html>
