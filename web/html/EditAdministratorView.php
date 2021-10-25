@@ -13,22 +13,29 @@ if (count($_POST) > 0) {
 } 
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Administrador</title>
-</head>
-<body>
-    <form action="" method="POST">
-        <input type="text" name="name" value="<?php echo $this->administrator['name']?>">
-        <input type="text" name="lastname" value="<?php echo $this->administrator['lastname']?>">
-        <input type="text" name="email" value="<?php echo $this->administrator['email']?>">
-        <input type="hidden" name="id" value="<?php echo $this->administrator['id_administrator']?>">
-        <input type="submit" value="Guardar">
-    </form>
 
-</body>
-</html>
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">Editar administrador</h5>
+  </div>
+  <form action="" method="POST">
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input type="text" name="name" value="<?php echo $this->administrator['name']?>" class="form-control" id="name">
+      </div>
+      <div class="mb-3">
+        <label for="lastname" class="form-label">Apellido</label>
+        <input type="text" name="lastname" value="<?php echo $this->administrator['lastname']?>" class="form-control" id="lastname">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" name="email" value="<?php echo $this->administrator['email']?>" class="form-control" id="email">
+      </div>
+      <input type="hidden" name="id" value="<?php echo $this->administrator['id_administrator']?>">
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </div>
+  </form>
+</div>

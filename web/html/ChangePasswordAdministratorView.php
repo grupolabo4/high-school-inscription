@@ -12,20 +12,21 @@ if (count($_POST) > 0) {
 } 
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cambiar password</title>
-</head>
-<body>
-    <form action="" method="POST">
-        Ingrese su nuevo password<input type="password" name="password">
-        <input type="hidden" name="id" value="<?php echo $this->administrator['id_administrator']?>">
-        <input type="submit" value="Guardar">
-    </form>
 
-</body>
-</html>
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">Cambiar contraseña</h5>
+  </div>
+  <form action="" method="POST">
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="password" class="form-label">Nuevo password</label>
+        <input type="password" name="password" class="form-control" id="password">
+        <input type="hidden" name="id" value="<?php echo $this->administrator['id_administrator']?>">
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </div>
+  </form>
+</div>
