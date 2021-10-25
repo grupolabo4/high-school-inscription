@@ -1,8 +1,6 @@
 <?php
 
-require('../fw/View.php');
-
-class SubjectListView extends View { 
+class SubjectsListView extends View { 
     public $subjects;
 }
 
