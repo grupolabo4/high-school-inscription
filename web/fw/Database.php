@@ -13,7 +13,7 @@ class Database {
 	}
 
 	private function connect() {
-		$this->cn = mysqli_connect("db", "root", "test", "labo4");
+		$this->cn = mysqli_connect($_SERVER["MYSQL_ADDON_HOST"], $_SERVER["MYSQL_ADDON_USER"], $_SERVER["MYSQL_ADDON_PASSWORD"], $_SERVER["MYSQL_ADDON_DB"]);
 	}
 
 	public function query($q) {
