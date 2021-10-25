@@ -24,7 +24,7 @@ if (count($_POST) > 0) {
 	</head>
   <body>
     <form action="#" method="POST">
-      <h2>El comienzo de algo nuevo</h2>
+      <h2>Iniciar sesion</h2>
       <div class="formGroup">
         <label>Usuario: </label>
         <input type="text" name="username"/>
