@@ -16,6 +16,18 @@ class Subjects extends Model {
                             WHERE sc.id_career = $careerId");
         return $this->db->fetchAll();
     }
+
+    public function getById($id) {
+        $this->db->query("SELECT * FROM subjects WHERE id_subject = $id");
+        return $this->db->fetchAll();
+    }
+
+    public function updateSubject($id, $name, $teacher) {
+        $this->db->query("UPDATE subjects 
+                            SET name = '$name',
+                            teacher = '$teacher'
+                            WHERE id_subject = $id");
+    }
 }
 
 ?>
