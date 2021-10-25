@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Carreras</title>
+    <title>Listado de Administradores</title>
 </head>
 <body>
     <table>
         <tr>
-            <th>Nombre de Carrera</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
             <th>Acciones</th>
         </tr>
         <?php 
-    foreach($this->careers as $career) { ?>
+    foreach($this->administrators as $administrator) { ?>
         <tr>
-            <td><?=$career['name']?></td>
+            <td><?=$administrator['name']?></td>
+            <td><?=$administrator['lastname']?></td>
+            <td><?=$administrator['email']?></td>
             <td>
-                <a href="../controllers/subjectsList.php?id=<?=$career['id_career']?>">
-                    Ver materias
+                <a href="../controllers/editAdministrator.php?id=<?=$administrator['id_administrator']?>">
+                    Editar datos
                 </a>
-                <a href="../controllers/editCareer.php?id=<?=$career['id_career']?>">
-                    Editar nombre
+                <a href="../controllers/deleteAdministrator.php?id=<?=$administrator['id_administrator']?>">
+                    Eliminar administrador
                 </a>
                 <!-- Tener en cuenta que estos links son solo demostrativos, ver la mejor forma
                 de hacer que esto se vea bien, con botones o en una tabla por ejemplo -->

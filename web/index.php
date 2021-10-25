@@ -1,7 +1,5 @@
 <?php
-  session_start();
-  if(!isset($_SESSION['session_id'])) {
-    header('location:./web/views/session/login.html');
-    exit();
-  }
+
+header("Location: ./controllers/indexController.php");
+
 ?>

@@ -2,17 +2,17 @@
 
 require '../fw/fw.php';
 require '../models/Subjects.php';
-require '../views/SubjectsListView.php';
+require '../views/EditSubjectView.php';
 
 checkSession();
 // TODO validar parametro
 $id = $_GET['id'];
 
 $subjects = new Subjects();
-$subjectsList = $subjects->getSubjectByCareerId($id);
+$subject = $subjects->getById($id);
 
-$view = new SubjectsListView();
-$view->subjects = $subjectsList;
+$view = new EditSubjectView();
+$view->subject = $subject[0];
 $view->render();
 
 ?>
