@@ -1,37 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Carreras</title>
-</head>
-<body>
-    <table>
-        <tr>
-            <th>Nombre de Carrera</th>
-            <th>Acciones</th>
-        </tr>
-        <?php 
-    foreach($this->careers as $career) { ?>
-        <tr>
-            <td><?=$career['name']?></td>
-            <td>
-                <a href="../controllers/subjectsList.php?id=<?=$career['id_career']?>">
-                    Ver materias
-                </a>
-                <a href="../controllers/editCareer.php?id=<?=$career['id_career']?>">
-                    Editar nombre
-                </a>
-                <!-- Tener en cuenta que estos links son solo demostrativos, ver la mejor forma
-                de hacer que esto se vea bien, con botones o en una tabla por ejemplo -->
-            </td>
-        </tr>
-         
-        
-        <br>
-        <!-- Aca meterlo adentro de un link, o agregarle un boton al lado, como nos guste mas -->
-    <?php } ?>
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">Listado de Carreras</h5>
+  </div>
+  <div class="card-body">
+    <table id="myTable" class="display">
+        <thead>
+            <tr>
+                <th>Nombre de Carrera</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($this->careers as $career) { ?>
+                <tr>
+                    <td><?=$career['name']?></td>
+                    <td>
+                        <a href="../controllers/subjectsList.php?id=<?=$career['id_career']?>" class="btn btn-success" title="Ver materias">
+                            <i class="fa fa-search"></i>
+                        </a>
+                        <a href="../controllers/editCareer.php?id=<?=$career['id_career']?>" class="btn btn-primary" title="Editar">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            <!-- Aca meterlo adentro de un link, o agregarle un boton al lado, como nos guste mas -->
+            <?php } ?>
+        </tbody>
     </table>
-</body>
-</html>
+  </div>
+</div>
+<script>
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+</script>
