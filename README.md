@@ -20,3 +20,8 @@
 - User: root
 - Password: test
 - Endpoint: localhost:3306
+
+### Inicio de sesion en entorno de prueba
+
+usuario: administrator
+password: sarasa

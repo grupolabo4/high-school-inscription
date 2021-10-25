@@ -3,7 +3,6 @@
 require '../fw/fw.php';
 require '../models/Careers.php';
 require '../views/EditCareerView.php';
-require '../fw/Session.php';
 
 checkSession();
 // TODO validar parametro

@@ -1,13 +1,16 @@
 <?php
 
-session_start();
 if (count($_POST) > 0) {
-    // TODO hashear el password
-    if ($_POST['username'] == "administrador" && $_POST['password'] == "sarasa") {
-        $_SESSION['logged'] = true;
-        header("Location: index.php");
-        exit;
-    }
+    // TODO validar los datos
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $password = hash("sha256", $password);
+
+    $administrators = new Administrators();
+    $administrator = $administrators->getByEmail($username);
+    if ($administrator['password'] == $password) {
+        createSession($administrator['id_administrator']);
+    }  
 }
 
 ?>
@@ -17,7 +20,7 @@ if (count($_POST) > 0) {
 	<head>
 		<title>Login</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/login.css"/>
+    <link rel="stylesheet" type="text/css" href="../assets/stylesheets/login.css"/>
 	</head>
   <body>
     <form action="#" method="POST">

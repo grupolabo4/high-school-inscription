@@ -173,3 +173,5 @@ INSERT INTO `subjects_careers` (id_subject, id_career) VALUES (80, 3);
 INSERT INTO `subjects_careers` (id_subject, id_career) VALUES (81, 3);
 INSERT INTO `subjects_careers` (id_subject, id_career) VALUES (82, 3);
 INSERT INTO `subjects_careers` (id_subject, id_career) VALUES (83, 3);
+
+INSERT INTO `administrators` (id_administrator, name, lastname, email, password) VALUES (1, "administrator", "administrator", "administrator", "29987e08ab73577b171e3cd96a4c643387014c6d25e0c92d130908effcfd71be");

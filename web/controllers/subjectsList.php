@@ -3,7 +3,6 @@
 require '../fw/fw.php';
 require '../models/Subjects.php';
 require '../views/SubjectsListView.php';
-require '../fw/Session.php';
 
 checkSession();
 // TODO validar parametro
