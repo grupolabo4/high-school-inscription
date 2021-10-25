@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+if (count($_POST) > 0) {
+    // TODO hashear el password
+    if ($_POST['username'] == "administrador" && $_POST['password'] == "sarasa") {
+        $_SESSION['logged'] = true;
+        header("Location: index.php");
+        exit;
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 	<head>

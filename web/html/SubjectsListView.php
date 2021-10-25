@@ -7,8 +7,20 @@
     <title>Listado de Materias por Carrera</title>
 </head>
 <body>
-    Aca vamos a acceder desde la lista de carreras, para mostrar el listado
-    de materias por carrera con todos sus datos, donde el administrador va a
-    poder editar los profesores asignados o el nombre de la materia
+    <table>
+        <tr>
+            <th>Materia</th>
+            <th>Profesor asignado</th>
+            <!-- Aca hay que decidir como editar estos datos siendo administrador
+            puede ser boton "editar" que lleve a nueva pantalla o directamente permitir
+            editarlo aca, como te guste mas -->
+        </tr>
+        <?php foreach($this->subjects as $subject) { ?>
+        <tr>
+            <td><?=$subject['name']?></b>
+            <td><?=$subject['teacher']?></td>
+        </tr>
+    <?php } ?>
+    </table>
 </body>
 </html>

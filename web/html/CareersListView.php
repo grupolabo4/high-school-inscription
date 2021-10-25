@@ -7,10 +7,12 @@
     <title>Listado de Carreras</title>
 </head>
 <body>
-    Aca iria el listado de Carreras disponibles con un link hacia las materias
     <br>
-    <?php foreach($this->careers as $career) { ?>
-        <b><?=$career['name']?></b>
+    <?php 
+    foreach($this->careers as $career) { ?>
+        <a href="../controllers/subjectsList.php?id=<?=$career['id_career']?>">
+            <?=$career['name']?>
+        </a>
         <br>
         <!-- Aca meterlo adentro de un link, o agregarle un boton al lado, como nos guste mas -->
     <?php } ?>
