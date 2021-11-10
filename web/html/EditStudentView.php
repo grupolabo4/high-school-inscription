@@ -26,15 +26,15 @@ if (count($_POST) > 0) {
           <div class="card-body">
             <div class="mb-3">
               <label for="name" class="form-label">Nombre</label>
-              <input type="text" name="name" value="<?php echo $this->student['name']?>" class="form-control" id="name">
+              <input type="text" name="name" value="<?php echo $this->student['name']?>" class="form-control" id="name" maxlength="50" required>
             </div>
             <div class="mb-3">
               <label for="lastname" class="form-label">Apellido</label>
-              <input type="text" name="lastname" value="<?php echo $this->student['lastname']?>" class="form-control" id="lastname">
+              <input type="text" name="lastname" value="<?php echo $this->student['lastname']?>" class="form-control" id="lastname" maxlength="50" required>
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" name="email" value="<?php echo $this->student['email']?>" class="form-control" id="email">
+              <input type="email" name="email" value="<?php echo $this->student['email']?>" class="form-control" id="email" maxlength="50" required>
             </div>
             <input type="hidden" name="id" value="<?php echo $this->student['id_student']?>">
           </div>

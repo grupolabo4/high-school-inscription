@@ -2,12 +2,12 @@
 
 if (count($_POST) > 0) {
     // TODO validar los datos
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
     $password = hash("sha256", $password);
 
     $administrators = new Administrators();
-    $administrator = $administrators->getByEmail($username);
+    $administrator = $administrators->getByEmail($email);
     if ($administrator['password'] == $password) {
         createSession($administrator['id_administrator']);
     }  
@@ -26,12 +26,12 @@ if (count($_POST) > 0) {
     <form action="#" method="POST">
       <h2>Iniciar sesion</h2>
       <div class="formGroup">
-        <label>Usuario: </label>
-        <input type="text" name="username"/>
+        <label>Email: </label>
+        <input type="email" name="email" maxlength="50" required/>
       </div>
       <div class="formGroup">
         <label>Clave: </label>
-        <input type="password" name="password"/>
+        <input type="password" name="password" maxlength="50" required/>
       </div>
       <button type="submit">Ingresar</button>
     </form>
