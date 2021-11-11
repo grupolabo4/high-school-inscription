@@ -30,12 +30,12 @@ if (count($_POST) > 0) {
   header("Location: ../controllers/indexController.php");
 } else {
   $id = $_GET['id'];
-  if ( !isset($id) ) die ("El campo no existe");
-  if ( !ctype_digit($id) ) die("Tiene que ser un numero");
-  if ( $id < 1 ) die("Tiene que ser mayor a 0");
-  
   $student = new Students();
-  $student = $student->getById($id);
+
+  // validacion
+  $validId = $student->validateID($id);
+  
+  $student = $student->getById($validId);
   
   $view = new EditStudentView();
   $view->student = $student[0];

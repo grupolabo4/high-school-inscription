@@ -33,8 +33,8 @@ class Subjects extends Model {
         if ( !ctype_digit($id) ) die("Tiene que ser un numero");
         if ( $id < 1 ) die("Tiene que ser mayor a 0");
 
-        $aux = $this->getById($id);
-        if ( count($aux) != 1 ) die("La materia no existe");
+        $aux = $this->db->query("SELECT * FROM subjects WHERE id_subject = $id LIMIT 1");
+        if ( $this->db->numRows() != 1 ) die("La materia no existe");
 
         return $id;
     }

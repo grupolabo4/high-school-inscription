@@ -20,12 +20,12 @@ if (count($_POST) > 0) {
   header("Location: ../controllers/careersList.php");
 } else {
   $id = $_GET['id'];
-  if ( !isset($id) ) die ("El campo no existe");
-  if ( !ctype_digit($id) ) die("Tiene que ser un numero");
-  if ( $id < 1 ) die("Tiene que ser mayor a 0");
-  
   $careers = new Careers();
-  $career = $careers->getById($id);
+  
+  // validacion
+  $validId = $careers->validateID($id);
+  
+  $career = $careers->getById($validId);
   
   $view = new EditCareerView();
   $view->career = $career[0];

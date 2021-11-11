@@ -20,8 +20,8 @@ class Careers extends Model {
         if ( !ctype_digit($id) ) die("Tiene que ser un numero");
         if ( $id < 1 ) die("Tiene que ser mayor a 0");
 
-        $aux = $this->getById($id);
-        if ( count($aux) != 1 ) die("La carrera no existe");
+        $aux = $this->db->query("SELECT * FROM careers WHERE id_career = $id LIMIT 1");
+        if ( $this->db->numRows() != 1 ) die("La carrera no existe");
 
         return $id;
     }

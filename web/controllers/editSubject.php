@@ -2,6 +2,7 @@
 
 require '../fw/fw.php';
 require '../models/Subjects.php';
+require '../models/Careers.php';
 require '../views/EditSubjectView.php';
 
 checkSession();
@@ -21,18 +22,19 @@ if (count($_POST) > 0) {
   $subjectInstance->updateSubject($validId, $validName, $validTeacher);
   
   // TODO mensaje guardado exitosamente, redirigiendo
-  if ( !isset($careerId) ) die ("El campo no existe");
-  if ( !ctype_digit($careerId) ) die("Tiene que ser un numero");
-  if ( $careerId < 1 ) die("Tiene que ser mayor a 0");
+  // validacion de career
+  $career = new Careers();
+  $validCareerId = $career->validateID($careerId);
+
   header("Location: ../controllers/subjectsList.php?id=$careerId");
 } else {
   $id = $_GET['id'];
-  if ( !isset($id) ) die ("El campo no existe");
-  if ( !ctype_digit($id) ) die("Tiene que ser un numero");
-  if ( $id < 1 ) die("Tiene que ser mayor a 0");
-  
   $subjects = new Subjects();
-  $subject = $subjects->getById($id);
+
+  // validacion 
+  $validId = $subjects->validateID($id);
+  
+  $subject = $subjects->getById($validId);
   
   $view = new EditSubjectView();
   $view->subject = $subject[0];
