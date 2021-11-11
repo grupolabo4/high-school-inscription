@@ -19,13 +19,9 @@ if (count($_POST) > 0) {
   $validName = $students->validateString($name, 50);
   $validLastName = $students->validateString($lastname, 50);
   $validEmail = $students->validateString($email, 50, 7);
+  $validIdentifier = $students->validateNumber($identifier);
 
-  // validacion de identifier
-  if ( !isset($identifier) ) die ("El campo no existe");
-  if ( !ctype_digit($identifier) ) die("Tiene que ser un numero");
-  if ( $identifier < 1 ) die("Tiene que ser mayor a 0");
-
-  $students->update($validId, $validName, $validLastName, $validEmail, $identifier);
+  $students->update($validId, $validName, $validLastName, $validEmail, $validIdentifier);
   // TODO mensaje guardado exitosamente, redirigiendo
   header("Location: alumnos");
 } else {

@@ -12,12 +12,29 @@ class Students extends Model {
         return $this->db->fetchAll();
     }
 
+    public function create($name, $lastname, $email, $password, $identifier) {
+        // TODO obtener alumnos y chequear que no exista el email sino explotar con exepcion
+        $this->db->query("INSERT INTO students (name, lastname, email, password, identifier)
+                            VALUES ('$name', '$lastname', '$email', '$password', '$identifier')");
+    }
+
     public function update($id, $name, $lastname, $email, $identifier) {
         $this->db->query("UPDATE students 
                             SET name = '$name',
                             lastname = '$lastname',
                             email = '$email',
                             identifier = '$identifier'
+                            WHERE id_student = $id");
+    }
+
+    public function deleteById($id) {
+        $this->db->query("DELETE FROM students 
+                            WHERE id_student = $id");
+    }
+
+    public function changePassword($id, $password) {
+        $this->db->query("UPDATE students 
+                            SET password = '$password'
                             WHERE id_student = $id");
     }
 
@@ -30,6 +47,14 @@ class Students extends Model {
         if ( $this->db->numRows() != 1 ) die("El estudiante no existe");
 
         return $id;
+    }
+
+    public function validateNumber($num) {
+        if ( !isset($num) ) die ("El campo no existe");
+        if ( !ctype_digit($num) ) die("Tiene que ser un numero");
+        if ( $num < 1 ) die("Tiene que ser mayor a 0");
+
+        return $num;
     }
 
     public function validateString($str, $max = 10000, $min = 1) {
