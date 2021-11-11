@@ -1,0 +1,25 @@
+# Reaglas de reescritura
+
+RewriteEngine on
+
+RewriteRule ^inicio$ controllers/indexController.php
+RewriteRule ^login$ controllers/loginController.php
+RewriteRule ^logout$ controllers/logoutController.php
+
+RewriteRule ^carreras$ controllers/careersList.php
+RewriteRule ^editar-carrera-([0-9]+)$ controllers/editCareer.php?id=$1
+
+RewriteRule ^materias-([0-9]+)$ controllers/subjectsList.php?id=$1
+RewriteRule ^editar-materia-([0-9]+)-([0-9]+)$ controllers/editSubject.php?id=$1&careerId=$2
+
+RewriteRule ^administradores$ controllers/administratorsList.php
+RewriteRule ^agregar-admin$ controllers/addAdministrator.php
+RewriteRule ^editar-admin-([0-9]+)$ controllers/editAdministrator.php?id=$1
+RewriteRule ^borrar-admin-([0-9]+)$ controllers/deleteAdministrator.php?id=$1
+RewriteRule ^cambiar-pass-admin-([0-9]+)$ controllers/changePasswordAdministrator.php?id=$1
+
+RewriteRule ^alumnos$ controllers/studentsList.php
+RewriteRule ^agregar-alumno$ controllers/addStudent.php
+RewriteRule ^editar-alumno-([0-9]+)$ controllers/editStudent.php?id=$1
+RewriteRule ^borrar-alumno-([0-9]+)$ controllers/deleteStudent.php?id=$1
+RewriteRule ^cambiar-pass-alumno-([0-9]+)$ controllers/changePasswordStudent.php?id=$1

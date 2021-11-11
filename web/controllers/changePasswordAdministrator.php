@@ -19,7 +19,7 @@ if (count($_POST) > 0) {
 
   $administrators->changePassword($validId, $validPassword);
   // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: ../../index.php");
+  header("Location: administradores");
 } else {
   $id = $_GET['id'];
   $administrator = new Administrators();

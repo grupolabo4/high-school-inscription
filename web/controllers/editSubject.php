@@ -26,7 +26,7 @@ if (count($_POST) > 0) {
   $career = new Careers();
   $validCareerId = $career->validateID($careerId);
 
-  header("Location: ../controllers/subjectsList.php?id=$careerId");
+  header("Location: materias-$careerId");
 } else {
   $id = $_GET['id'];
   $subjects = new Subjects();

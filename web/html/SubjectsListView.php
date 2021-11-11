@@ -25,7 +25,7 @@
                                 <td><?=$subject['name']?></b>
                                 <td><?=$subject['teacher']?></td>
                                 <td>
-                                    <a href="../controllers/editSubject.php?id=<?=$subject['id_subject']?>&careerId=<?=$_GET['id']?>" class="btn btn-primary" title="Editar">
+                                    <a href="editar-materia-<?=$subject['id_subject']?>-<?=$_GET['id']?>" class="btn btn-primary" title="Editar">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </td>

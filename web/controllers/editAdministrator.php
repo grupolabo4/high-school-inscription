@@ -21,7 +21,7 @@ if (count($_POST) > 0) {
   
   $administrators->update($validId, $validName, $validLastName, $validEmail);
   // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: ../controllers/administratorsList.php");
+  header("Location: administradores");
 }  else {
   $id = $_GET['id'];
   $administrator = new Administrators();

@@ -10,6 +10,6 @@ $administrator = new Administrators();
 $validId = $administrator->validateID($id);
 $administrator = $administrator->deleteById($validId);
 
-header("Location: ./administratorsList.php")
+header("Location: administradores");
 
 ?>

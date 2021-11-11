@@ -23,7 +23,7 @@ if (count($_POST) > 0) {
 
   $administrators->create($validName, $validLastName, $validEmail, $validPassword);
   // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: ../controllers/administratorsList.php");
+  header("Location: administradores");
 } else {
   $view = new AddAdministratorView();
   $view->render();

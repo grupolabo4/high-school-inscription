@@ -27,7 +27,7 @@ if (count($_POST) > 0) {
 
   $students->update($validId, $validName, $validLastName, $validEmail, $identifier);
   // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: ../controllers/indexController.php");
+  header("Location: alumnos");
 } else {
   $id = $_GET['id'];
   $student = new Students();

@@ -24,10 +24,10 @@
                   <td><?=$administrator['lastname']?></td>
                   <td><?=$administrator['email']?></td>
                   <td>
-                    <a href="../controllers/changePasswordAdministrator.php?id=<?=$administrator['id_administrator']?>" class="btn btn-primary">
+                    <a href="cambiar-pass-admin-<?=$administrator['id_administrator']?>" class="btn btn-primary">
                       Cambiar password
                     </a>
-                    <a href="../controllers/editAdministrator.php?id=<?=$administrator['id_administrator']?>" class="btn btn-primary" title="Editar">
+                    <a href="editar-admin-<?=$administrator['id_administrator']?>" class="btn btn-primary" title="Editar">
                       <i class="fa fa-edit"> </i>
                     </a>
                     <a href="#" class="btn btn-danger" title="Eliminar" onclick="onDelete(<?=$administrator['id_administrator']?>)">
@@ -43,7 +43,7 @@
           </table>
         </div>
         <div class="card-footer">
-          <a href="../controllers/addAdministrator.php" class="btn btn-success">Agregar administrador</a>
+          <a href="agregar-admin" class="btn btn-success">Agregar administrador</a>
         <div>
       </div>
     </div>
@@ -51,7 +51,7 @@
   <script>
     function onDelete(id) {
       if (confirm("¿Esta seguro que quiere borrar el administrador?")) {
-        window.location = `../controllers/deleteAdministrator.php?id=${id}`;
+        window.location = `borrar-admin-${id}`;
       }
     }
     $(document).ready( function () {

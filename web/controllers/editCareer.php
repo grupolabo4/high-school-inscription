@@ -17,11 +17,11 @@ if (count($_POST) > 0) {
   
   $careerInstance->updateName($validId, $validName);
   // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: ../controllers/careersList.php");
+  header("Location: carreras");
 } else {
   $id = $_GET['id'];
   $careers = new Careers();
-  
+
   // validacion
   $validId = $careers->validateID($id);
   

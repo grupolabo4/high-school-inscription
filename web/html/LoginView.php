@@ -3,10 +3,10 @@
 	<head>
 		<title>Login</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="../assets/stylesheets/login.css"/>
+    <link rel="stylesheet" type="text/css" href="./assets/stylesheets/login.css"/>
 	</head>
   <body>
-    <form action="#" method="POST">
+    <form action="" method="POST">
       <h2>Iniciar sesion</h2>
       <div class="formGroup">
         <label>Email: </label>

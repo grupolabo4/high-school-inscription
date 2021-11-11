@@ -20,10 +20,10 @@
                             <tr>
                                 <td><?=$career['name']?></td>
                                 <td>
-                                    <a href="../controllers/subjectsList.php?id=<?=$career['id_career']?>" class="btn btn-success" title="Ver materias">
+                                    <a href="materias-<?=$career['id_career']?>" class="btn btn-success" title="Ver materias">
                                         <i class="fa fa-search"></i>
                                     </a>
-                                    <a href="../controllers/editCareer.php?id=<?=$career['id_career']?>" class="btn btn-primary" title="Editar">
+                                    <a href="editar-carrera-<?=$career['id_career']?>" class="btn btn-primary" title="Editar">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </td>
