@@ -1,17 +1,3 @@
-<?php 
-
-if (count($_POST) > 0) {
-    // TODO VALIDAR
-    $name = $_POST['name'];
-    $id = $_POST['id'];
-    $careerInstance = new Careers();
-    $careerInstance->updateName($id, $name);
-    // TODO mensaje guardado exitosamente, redirigiendo
-    header("Location: ../controllers/careersList.php");
-} 
-
-?>
-
 <?php require_once '../html/Layout.php'?>
 <!DOCTYPE html>
 <html lang="en">

@@ -5,14 +5,41 @@ require '../models/Students.php';
 require '../views/EditStudentView.php';
 
 checkSession();
-// TODO validar parametro
-$id = $_GET['id'];
 
-$student = new Students();
-$student = $student->getById($id);
+if (count($_POST) > 0) {
+  $id = $_POST['id'];
+  $name = $_POST['name'];
+  $lastname = $_POST['lastname'];
+  $email = $_POST['email'];
+  $identifier = $_POST['identifier'];
+  $students = new Students();
 
-$view = new EditStudentView();
-$view->student = $student[0];
-$view->render();
+  // validaciones
+  $validId = $students->validateID($id);
+  $validName = $students->validateString($name, 50);
+  $validLastName = $students->validateString($lastname, 50);
+  $validEmail = $students->validateString($email, 50, 7);
+
+  // validacion de identifier
+  if ( !isset($identifier) ) die ("El campo no existe");
+  if ( !ctype_digit($identifier) ) die("Tiene que ser un numero");
+  if ( $identifier < 1 ) die("Tiene que ser mayor a 0");
+
+  $students->update($validId, $validName, $validLastName, $validEmail, $identifier);
+  // TODO mensaje guardado exitosamente, redirigiendo
+  header("Location: ../controllers/indexController.php");
+} else {
+  $id = $_GET['id'];
+  if ( !isset($id) ) die ("El campo no existe");
+  if ( !ctype_digit($id) ) die("Tiene que ser un numero");
+  if ( $id < 1 ) die("Tiene que ser mayor a 0");
+  
+  $student = new Students();
+  $student = $student->getById($id);
+  
+  $view = new EditStudentView();
+  $view->student = $student[0];
+  $view->render();
+}
 
 ?>

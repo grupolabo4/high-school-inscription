@@ -1,8 +1,3 @@
-<?php
-
-checkSession()
-
-?>
 <?php require_once '../html/Layout.php'?>
 <!DOCTYPE html>
 <html lang="en">

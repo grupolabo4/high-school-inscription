@@ -30,7 +30,7 @@
                     <a href="../controllers/editAdministrator.php?id=<?=$administrator['id_administrator']?>" class="btn btn-primary" title="Editar">
                       <i class="fa fa-edit"> </i>
                     </a>
-                    <a href="../controllers/deleteAdministrator.php?id=<?=$administrator['id_administrator']?>" class="btn btn-danger" title="Eliminar">
+                    <a href="#" class="btn btn-danger" title="Eliminar" onclick="onDelete(<?=$administrator['id_administrator']?>)">
                       <i class="fa fa-trash"> </i>
                     </a>
                     <!-- Tener en cuenta que estos links son solo demostrativos, ver la mejor forma
@@ -49,6 +49,11 @@
     </div>
   </body>
   <script>
+    function onDelete(id) {
+      if (confirm("¿Esta seguro que quiere borrar el administrador?")) {
+        window.location = `../controllers/deleteAdministrator.php?id=${id}`;
+      }
+    }
     $(document).ready( function () {
       $('#myTable').DataTable();
     } );

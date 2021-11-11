@@ -1,18 +1,3 @@
-<?php 
-
-if (count($_POST) > 0) {
-    // TODO VALIDAR
-    $name = $_POST['name'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $id = $_POST['id'];
-    $administrators = new Administrators();
-    $administrators->update($id, $name, $lastname, $email);
-    // TODO mensaje guardado exitosamente, redirigiendo
-    header("Location: ../controllers/administratorsList.php");
-} 
-
-?>
 <?php require_once '../html/Layout.php'?>
 <!DOCTYPE html>
 <html lang="en">

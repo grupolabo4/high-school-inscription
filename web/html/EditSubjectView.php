@@ -1,18 +1,3 @@
-<?php 
-
-if (count($_POST) > 0) {
-    // TODO VALIDAR
-    $name = $_POST['name'];
-    $id = $_POST['id'];
-    $careerId = $_POST['careerId'];
-    $teacher = $_POST['teacher'];
-    $subjectInstance = new Subjects();
-    $subjectInstance->updateSubject($id, $name, $teacher);
-    // TODO mensaje guardado exitosamente, redirigiendo
-    header("Location: ../controllers/subjectsList.php?id=$careerId");
-} 
-
-?>
 <?php require_once '../html/Layout.php'?>
 <!DOCTYPE html>
 <html lang="en">

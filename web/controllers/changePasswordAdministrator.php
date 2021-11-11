@@ -5,14 +5,33 @@ require '../models/Administrators.php';
 require '../views/ChangePasswordAdministratorView.php';
 
 checkSession();
-// TODO validar parametro
-$id = $_GET['id'];
 
-$administrator = new Administrators();
-$administrator = $administrator->getById($id);
+if (count($_POST) > 0) {
+  $password = $_POST['password'];
+  $id = $_POST['id'];
+  $administrators = new Administrators();
 
-$view = new ChangePasswordAdministratorView();
-$view->administrator = $administrator[0];
-$view->render();
+  // validaciones
+  $validId = $administrators->validateID($id);
+  $validPassword = $administrators->validateString($password, 16);
+
+  $validPassword = hash("sha256", $validPassword);
+
+  $administrators->changePassword($validId, $validPassword);
+  // TODO mensaje guardado exitosamente, redirigiendo
+  header("Location: ../../index.php");
+} else {
+  $id = $_GET['id'];
+  if ( !isset($id) ) die ("El campo no existe");
+  if ( !ctype_digit($id) ) die("Tiene que ser un numero");
+  if ( $id < 1 ) die("Tiene que ser mayor a 0");
+  
+  $administrator = new Administrators();
+  $administrator = $administrator->getById($id);
+  
+  $view = new ChangePasswordAdministratorView();
+  $view->administrator = $administrator[0];
+  $view->render();
+}
 
 ?>

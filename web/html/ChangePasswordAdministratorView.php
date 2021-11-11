@@ -1,18 +1,3 @@
-<?php 
-
-if (count($_POST) > 0) {
-    // TODO VALIDAR
-    $password = $_POST['password'];
-    $password = hash("sha256", $password);
-    $id = $_POST['id'];
-    $administrators = new Administrators();
-    $administrators->changePassword($id, $password);
-    // TODO mensaje guardado exitosamente, redirigiendo
-    header("Location: ../../index.php");
-} 
-
-?>
-
 <?php require_once '../html/Layout.php'?>
 <!DOCTYPE html>
 <html lang="en">

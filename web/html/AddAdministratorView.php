@@ -1,20 +1,3 @@
-<?php 
-
-if (count($_POST) > 0) {
-  // TODO VALIDAR
-  $name = $_POST['name'];
-  $lastname = $_POST['lastname'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $password = hash('sha256', $password);
-  $administrators = new Administrators();
-  $administrators->create($name, $lastname, $email, $password);
-  // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: ../controllers/administratorsList.php");
-} 
-
-?>
-
 <?php require_once '../html/Layout.php'?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,19 +11,19 @@ if (count($_POST) > 0) {
           <div class="card-body">
             <div class="mb-3">
               <label for="name" class="form-label">Nombre</label>
-              <input type="text" name="name" class="form-control" id="name">
+              <input type="text" name="name" class="form-control" id="name" maxlength="50" required>
             </div>
             <div class="mb-3">
               <label for="lastname" class="form-label">Apellido</label>
-              <input type="text" name="lastname" class="form-control" id="lastname">
+              <input type="text" name="lastname" class="form-control" id="lastname" maxlength="50" required>
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" name="email" class="form-control" id="email">
+              <input type="email" name="email" class="form-control" id="email" maxlength="50" required>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input type="password" name="password" class="form-control" id="password">
+              <input type="password" name="password" class="form-control" id="password" maxlength="16" required>
             </div>
           </div>
           <div class="card-footer">

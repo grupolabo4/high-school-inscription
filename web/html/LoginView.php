@@ -1,20 +1,3 @@
-<?php
-
-if (count($_POST) > 0) {
-    // TODO validar los datos
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $password = hash("sha256", $password);
-
-    $administrators = new Administrators();
-    $administrator = $administrators->getByEmail($email);
-    if ($administrator['password'] == $password) {
-        createSession($administrator['id_administrator']);
-    }  
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -31,7 +14,7 @@ if (count($_POST) > 0) {
       </div>
       <div class="formGroup">
         <label>Clave: </label>
-        <input type="password" name="password" maxlength="50" required/>
+        <input type="password" name="password" maxlength="16" required/>
       </div>
       <button type="submit">Ingresar</button>
     </form>
