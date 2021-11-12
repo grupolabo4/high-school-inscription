@@ -11,27 +11,30 @@ if (count($_POST) > 0) {
   $id = $_POST['id'];
   $administrators = new Administrators();
 
-  // validaciones
-  $validId = $administrators->validateID($id);
-  $validPassword = $administrators->validateString($password, 16);
+  if ( !isset($id) ) die("El campo no existe");
+  if ( !isset($password) ) die("El campo no existe");
 
-  $validPassword = hash("sha256", $validPassword);
+  $validPassword = hash("sha256", $password);
 
-  $administrators->changePassword($validId, $validPassword);
-  // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: administradores");
+  try {
+    $administrators->changePassword($id, $validPassword);
+    header("Location: administradores");
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
+
 } else {
   $id = $_GET['id'];
   $administrator = new Administrators();
   
-  // validacion
-  $validId = $administrator->validateID($id);
-  
-  $administrator = $administrator->getById($validId);
-  
-  $view = new ChangePasswordAdministratorView();
-  $view->administrator = $administrator[0];
-  $view->render();
+  try {
+    $administrator = $administrator->getById($id);
+    $view = new ChangePasswordAdministratorView();
+    $view->administrator = $administrator[0];
+    $view->render();
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
 }
 
 ?>

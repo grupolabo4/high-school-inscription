@@ -7,33 +7,37 @@ require '../views/EditAdministratorView.php';
 checkSession();
 
 if (count($_POST) > 0) {
+  $id = $_POST['id'];
   $name = $_POST['name'];
   $lastname = $_POST['lastname'];
   $email = $_POST['email'];
-  $id = $_POST['id'];
   $administrators = new Administrators();
 
-  //validaciones
-  $validId = $administrators->validateID($id);
-  $validName = $administrators->validateString($name, 50);
-  $validLastName = $administrators->validateString($lastname, 50);
-  $validEmail = $administrators->validateString($email, 50, 7);
+  if ( !isset($id) ) die("El campo no existe");
+  if ( !isset($name) ) die("El campo no existe");
+  if ( !isset($lastname) ) die("El campo no existe");
+  if ( !isset($email) ) die("El campo no existe");
   
-  $administrators->update($validId, $validName, $validLastName, $validEmail);
-  // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: administradores");
+  try {
+    $administrators->update($id, $name, $lastname, $email);
+    header("Location: administradores");
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
+
 }  else {
   $id = $_GET['id'];
   $administrator = new Administrators();
-
-  // validacion
-  $validId = $administrator->validateID($id);
   
-  $administrator = $administrator->getById($validId);
+  try {
+    $administrator = $administrator->getById($id);
+    $view = new EditAdministratorView();
+    $view->administrator = $administrator[0];
+    $view->render();
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
   
-  $view = new EditAdministratorView();
-  $view->administrator = $administrator[0];
-  $view->render();
 }
 
 ?>

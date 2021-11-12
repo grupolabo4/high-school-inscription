@@ -13,17 +13,20 @@ if (count($_POST) > 0) {
   $password = $_POST['password'];
   $administrators = new Administrators();
 
-  //validaciones
-  $validName = $administrators->validateString($name, 50);
-  $validLastName = $administrators->validateString($lastname, 50);
-  $validEmail = $administrators->validateString($email, 50, 7);
-  $validPassword = $administrators->validateString($password, 16);
+  if ( !isset($name) ) die("El campo no existe");
+  if ( !isset($lastname) ) die("El campo no existe");
+  if ( !isset($email) ) die("El campo no existe");
+  if ( !isset($password) ) die("El campo no existe");
 
-  $validPassword = hash("sha256", $validPassword);
+  $ePassword = hash("sha256", $password);
 
-  $administrators->create($validName, $validLastName, $validEmail, $validPassword);
-  // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: administradores");
+  try {
+    $administrators->create($name, $lastname, $email, $ePassword);
+    header("Location: administradores");
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
+
 } else {
   $view = new AddAdministratorView();
   $view->render();

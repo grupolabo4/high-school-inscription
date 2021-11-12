@@ -10,15 +10,21 @@ if (count($_POST) > 0) {
   $password = $_POST['password'];
   $administrators = new Administrators();
 
-  // validaciones
-  $validEmail = $administrators->validateString($email, 50);
-  $validPassword = $administrators->validateString($password, 16);
-  $validPassword = hash("sha256", $validPassword);
+  if ( !isset($email) ) die("El campo no existe");
+  if ( !isset($password) ) die("El campo no existe");
+  $password = hash("sha256", $password);
 
-  $administrator = $administrators->getByEmail($validEmail);
-  if ($administrator['password'] == $validPassword) {
-    createSession($administrator['id_administrator']);
-  }  
+  try {
+    $administrator = $administrators->getByEmail($email);
+    if ($administrator['password'] == $password) {
+      createSession($administrator['id_administrator']);
+    } else {
+      die("password incorrecta");
+    }
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
+
 } else {
   $view = new LoginView();
   $view->render();

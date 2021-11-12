@@ -7,9 +7,12 @@ checkSession();
 $id = $_GET['id'];
 $administrator = new Administrators();
 
-$validId = $administrator->validateID($id);
-$administrator = $administrator->deleteById($validId);
+if ( !isset($id) ) die("El campo no existe");
 
-header("Location: administradores");
-
+try {
+  $administrator = $administrator->deleteById($id);
+  header("Location: administradores");
+} catch (ValidationException $e) {
+  die($e->getMessage());
+}
 ?>
