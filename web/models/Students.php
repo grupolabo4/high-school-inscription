@@ -22,6 +22,12 @@ class Students extends Model {
         $this->validateString($email, 50, 7);
         $this->validateNumber($identifier);
 
+        $this->db->query("SELECT * FROM students WHERE email = '$email' LIMIT 1");
+        if ( $this->db->numRows() == 1 ) throw new ValidationException("El alumno ya existe");
+
+        $this->db->query("SELECT * FROM students WHERE identifier = $identifier LIMIT 1");
+        if ( $this->db->numRows() == 1 ) throw new ValidationException("El alumno ya existe");
+
         $name = $this->db->escape($name);
         $lastname = $this->db->escape($lastname);
         $email = $this->db->escape($email);
@@ -37,6 +43,14 @@ class Students extends Model {
         $this->validateString($lastname, 50);
         $this->validateString($email, 50, 7);
         $this->validateNumber($identifier);
+
+        $this->db->query("SELECT * FROM students WHERE email = '$email'");
+        $aux = $this->db->fetch();
+        if ( $this->db->numRows() != 0 && $aux["id_student"] != $id ) throw new ValidationException("Ya existe un alumno con ese email");
+
+        $this->db->query("SELECT * FROM students WHERE identifier = $identifier");
+        $aux = $this->db->fetch();
+        if ( $this->db->numRows() != 0 && $aux["id_student"] != $id ) throw new ValidationException("Ya existe un alumno con ese legajo");
 
         $name = $this->db->escape($name);
         $lastname = $this->db->escape($lastname);
@@ -77,7 +91,7 @@ class Students extends Model {
         if ( $id < 1 ) throw new ValidationException("Tiene que ser mayor a 0");
 
         $aux = $this->db->query("SELECT * FROM students WHERE id_student = $id LIMIT 1");
-        if ( $this->db->numRows() != 1 ) throw new ValidationException("El estudiante no existe");
+        if ( $this->db->numRows() != 1 ) throw new ValidationException("El alumno no existe");
     }
 
     public function validateString($str, $max = 10000, $min = 1) {

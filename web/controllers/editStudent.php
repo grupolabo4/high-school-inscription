@@ -32,7 +32,7 @@ if (count($_POST) > 0) {
   $student = new Students();
   
   try {
-    $student = $student->getById($validId);
+    $student = $student->getById($id);
     $view = new EditStudentView();
     $view->student = $student[0];
     $view->render();

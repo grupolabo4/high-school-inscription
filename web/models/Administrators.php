@@ -30,6 +30,8 @@ class Administrators extends Model {
         $this->validateString($name, 50);
         $this->validateString($lastname, 50);
         $this->validateString($email, 50, 7);
+        $aux = $this->db->query("SELECT * FROM administrators WHERE email = '$email' LIMIT 1");
+        if ( $this->db->numRows() == 1 ) throw new ValidationException("El administrador ya existe");
 
         $name = $this->db->escape($name);
         $lastname = $this->db->escape($lastname);
@@ -45,6 +47,10 @@ class Administrators extends Model {
         $this->validateString($name, 50);
         $this->validateString($lastname, 50);
         $this->validateString($email, 50, 7);
+
+        $this->db->query("SELECT * FROM administrators WHERE email = '$email'");
+        $aux = $this->db->fetch();
+        if ( $this->db->numRows() != 0 && $aux["id_administrator"] != $id ) throw new ValidationException("Ya existe un administrador con ese email");
 
         $name = $this->db->escape($name);
         $lastname = $this->db->escape($lastname);
