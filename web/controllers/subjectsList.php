@@ -9,14 +9,16 @@ checkSession();
 $id = $_GET['id'];
 $subjects = new Subjects();
 
-// validacion de id
-$career = new Careers();
-$validId = $career->validateID($id);
+if ( !isset($id) ) die("El campo no existe");
 
-$subjectsList = $subjects->getSubjectByCareerId($validId);
+try {
+  $subjectsList = $subjects->getSubjectByCareerId($id);
+  $view = new SubjectsListView();
+  $view->subjects = $subjectsList;
+  $view->render();
+} catch (ValidationException $e) {
+  die($e->getMessage());
+}
 
-$view = new SubjectsListView();
-$view->subjects = $subjectsList;
-$view->render();
 
 ?>

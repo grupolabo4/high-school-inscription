@@ -11,24 +11,29 @@ if (count($_POST) > 0) {
   $name = $_POST['name'];
   $careerInstance = new Careers();
 
-  //validaciones
-  $validId = $careerInstance->validateID($id);
-  $validName = $careerInstance->validateString($name, 50);
+  if ( !isset($id) ) die("El campo no existe");
+  if ( !isset($name) ) die("El campo no existe");
   
-  $careerInstance->updateName($validId, $validName);
-  // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: carreras");
+  try {
+    $careerInstance->updateName($id, $name);
+    // TODO mensaje guardado exitosamente, redirigiendo
+    header("Location: carreras");
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
 } else {
   $id = $_GET['id'];
   $careers = new Careers();
 
-  // validacion
-  $validId = $careers->validateID($id);
+  if ( !isset($id) ) die("El campo no existe");
   
-  $career = $careers->getById($validId);
-  
-  $view = new EditCareerView();
-  $view->career = $career[0];
-  $view->render();
+  try {
+    $career = $careers->getById($id);
+    $view = new EditCareerView();
+    $view->career = $career[0];
+    $view->render();
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
 }
 ?>

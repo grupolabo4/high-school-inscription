@@ -8,37 +8,38 @@ require '../views/EditSubjectView.php';
 checkSession();
 
 if (count($_POST) > 0) {
-  $name = $_POST['name'];
   $id = $_POST['id'];
+  $name = $_POST['name'];
   $careerId = $_POST['careerId'];
   $teacher = $_POST['teacher'];
   $subjectInstance = new Subjects();
 
-  //validaciones
-  $validId = $subjectInstance->validateID($id);
-  $validName = $subjectInstance->validateString($name, 80);
-  $validTeacher = $subjectInstance->validateString($teacher, 50);
-  
-  $subjectInstance->updateSubject($validId, $validName, $validTeacher);
-  
-  // TODO mensaje guardado exitosamente, redirigiendo
-  // validacion de career
-  $career = new Careers();
-  $validCareerId = $career->validateID($careerId);
+  if ( !isset($id) ) die("El campo no existe");
+  if ( !isset($name) ) die("El campo no existe");
+  if ( !isset($careerId) ) die("El campo no existe");
+  if ( !isset($teacher) ) die("El campo no existe");
 
-  header("Location: materias-$careerId");
+  try {
+    $subjectInstance->updateSubject($id, $name, $teacher);
+    // TODO mensaje guardado exitosamente, redirigiendo
+    header("Location: materias-$careerId");
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
 } else {
   $id = $_GET['id'];
   $subjects = new Subjects();
 
-  // validacion 
-  $validId = $subjects->validateID($id);
+  if ( !isset($id) ) die("El campo no existe");
   
-  $subject = $subjects->getById($validId);
-  
-  $view = new EditSubjectView();
-  $view->subject = $subject[0];
-  $view->render();
+  try {
+    $subject = $subjects->getById($id);
+    $view = new EditSubjectView();
+    $view->subject = $subject[0];
+    $view->render();
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
 }
 
 ?>
