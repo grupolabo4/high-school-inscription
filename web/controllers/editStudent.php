@@ -14,28 +14,31 @@ if (count($_POST) > 0) {
   $identifier = $_POST['identifier'];
   $students = new Students();
 
-  // validaciones
-  $validId = $students->validateID($id);
-  $validName = $students->validateString($name, 50);
-  $validLastName = $students->validateString($lastname, 50);
-  $validEmail = $students->validateString($email, 50, 7);
-  $validIdentifier = $students->validateNumber($identifier);
+  if ( !isset($id) ) die("El campo no existe");
+  if ( !isset($name) ) die("El campo no existe");
+  if ( !isset($lastname) ) die("El campo no existe");
+  if ( !isset($email) ) die("El campo no existe");
+  if ( !isset($identifier) ) die("El campo no existe");
 
-  $students->update($validId, $validName, $validLastName, $validEmail, $validIdentifier);
-  // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: alumnos");
+  try {
+    $students->update($id, $name, $lastname, $email, $identifier);
+    header("Location: alumnos");
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
+  
 } else {
   $id = $_GET['id'];
   $student = new Students();
-
-  // validacion
-  $validId = $student->validateID($id);
   
-  $student = $student->getById($validId);
-  
-  $view = new EditStudentView();
-  $view->student = $student[0];
-  $view->render();
+  try {
+    $student = $student->getById($validId);
+    $view = new EditStudentView();
+    $view->student = $student[0];
+    $view->render();
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
 }
 
 ?>

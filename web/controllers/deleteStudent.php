@@ -7,9 +7,14 @@ checkSession();
 $id = $_GET['id'];
 $student = new Students();
 
-$validId = $student->validateID($id);
-$student = $student->deleteById($validId);
+if ( !isset($id) ) die("El campo no existe");
 
-header("Location: alumnos");
+try {
+  $student = $student->deleteById($id);
+  header("Location: alumnos");
+} catch (ValidationException) {
+  die($e->getMessage());
+}
+
 
 ?>

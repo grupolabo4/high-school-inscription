@@ -14,18 +14,20 @@ if (count($_POST) > 0) {
   $identifier = $_POST['identifier'];
   $student = new Students();
 
-  //validaciones
-  $validName = $student->validateString($name, 50);
-  $validLastName = $student->validateString($lastname, 50);
-  $validEmail = $student->validateString($email, 50, 7);
-  $validPassword = $student->validateString($password, 16);
-  $validIdentifier = $student->validateNumber($identifier);
+  if ( !isset($name) ) die("El campo no existe");
+  if ( !isset($lastname) ) die("El campo no existe");
+  if ( !isset($email) ) die("El campo no existe");
+  if ( !isset($password) ) die("El campo no existe");
+  if ( !isset($identifier) ) die("El campo no existe");
 
-  $validPassword = hash("sha256", $validPassword);
+  $password = hash("sha256", $password);
 
-  $student->create($validName, $validLastName, $validEmail, $validPassword, $validIdentifier);
-  // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: alumnos");
+  try {
+    $student->create($name, $lastname, $email, $password, $identifier);
+    header("Location: alumnos");
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
 } else {
   $view = new AddStudentView();
   $view->render();

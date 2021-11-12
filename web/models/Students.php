@@ -8,17 +8,40 @@ class Students extends Model {
     }
 
     public function getById($id) {
+
+        $this->validateID($id);
+        
         $this->db->query("SELECT * FROM students WHERE id_student = $id LIMIT 1");
         return $this->db->fetchAll();
     }
 
     public function create($name, $lastname, $email, $password, $identifier) {
-        // TODO obtener alumnos y chequear que no exista el email sino explotar con exepcion
+
+        $this->validateString($name, 50);
+        $this->validateString($lastname, 50);
+        $this->validateString($email, 50, 7);
+        $this->validateNumber($identifier);
+
+        $name = $this->db->escape($name);
+        $lastname = $this->db->escape($lastname);
+        $email = $this->db->escape($email);
+
         $this->db->query("INSERT INTO students (name, lastname, email, password, identifier)
                             VALUES ('$name', '$lastname', '$email', '$password', '$identifier')");
     }
 
     public function update($id, $name, $lastname, $email, $identifier) {
+
+        $this->validateID($id);
+        $this->validateString($name, 50);
+        $this->validateString($lastname, 50);
+        $this->validateString($email, 50, 7);
+        $this->validateNumber($identifier);
+
+        $name = $this->db->escape($name);
+        $lastname = $this->db->escape($lastname);
+        $email = $this->db->escape($email);
+
         $this->db->query("UPDATE students 
                             SET name = '$name',
                             lastname = '$lastname',
@@ -28,42 +51,41 @@ class Students extends Model {
     }
 
     public function deleteById($id) {
+
+        $this->validateID($id);
+
         $this->db->query("DELETE FROM students 
                             WHERE id_student = $id");
     }
 
     public function changePassword($id, $password) {
+
+        $this->validateID($id);
+
         $this->db->query("UPDATE students 
                             SET password = '$password'
                             WHERE id_student = $id");
     }
 
-    public function validateID($id) {
-        if ( !isset($id) ) die ("El campo no existe");
-        if ( !ctype_digit($id) ) die("Tiene que ser un numero");
-        if ( $id < 1 ) die("Tiene que ser mayor a 0");
-
-        $aux = $this->db->query("SELECT * FROM students WHERE id_student = $id LIMIT 1");
-        if ( $this->db->numRows() != 1 ) die("El estudiante no existe");
-
-        return $id;
+    public function validateNumber($num) {
+        if ( !ctype_digit($num) ) throw new ValidationException("Tiene que ser un numero");
+        if ( $num < 1 ) throw new ValidationException("Tiene que ser mayor a 0");
     }
 
-    public function validateNumber($num) {
-        if ( !isset($num) ) die ("El campo no existe");
-        if ( !ctype_digit($num) ) die("Tiene que ser un numero");
-        if ( $num < 1 ) die("Tiene que ser mayor a 0");
+    public function validateID($id) {
+        if ( !ctype_digit($id) ) throw new ValidationException("Tiene que ser un numero");
+        if ( $id < 1 ) throw new ValidationException("Tiene que ser mayor a 0");
 
-        return $num;
+        $aux = $this->db->query("SELECT * FROM students WHERE id_student = $id LIMIT 1");
+        if ( $this->db->numRows() != 1 ) throw new ValidationException("El estudiante no existe");
     }
 
     public function validateString($str, $max = 10000, $min = 1) {
-        if ( !isset($str) ) die ("El campo no existe");
-        if ( strlen($str) < $min ) die ("La longitud minima es: $min");
-        if ( substr($str, $max) ) die ("La longitud maxima es: $max");
-
-        return $this->db->escape($str);
+        if ( strlen($str) < $min ) throw new ValidationException("La longitud minima es: $min");
+        if ( substr($str, $max) ) throw new ValidationException("La longitud maxima es: $max");
     }
 }
+
+class ValidationException extends Exception {}
 
 ?>

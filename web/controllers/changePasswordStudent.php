@@ -11,27 +11,30 @@ if (count($_POST) > 0) {
   $id = $_POST['id'];
   $student = new Students();
 
-  // validaciones
-  $validId = $student->validateID($id);
-  $validPassword = $student->validateString($password, 16);
+  if ( !isset($id) ) die("El campo no existe");
+  if ( !isset($password) ) die("El campo no existe");
 
-  $validPassword = hash("sha256", $validPassword);
+  $password = hash("sha256", $password);
 
-  $student->changePassword($validId, $validPassword);
-  // TODO mensaje guardado exitosamente, redirigiendo
-  header("Location: alumnos");
+  try {
+    $student->changePassword($id, $password);
+    header("Location: alumnos");
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
+
 } else {
   $id = $_GET['id'];
   $student = new Students();
   
-  // validacion
-  $validId = $student->validateID($id);
-  
-  $student = $student->getById($validId);
-  
-  $view = new ChangePasswordStudentView();
-  $view->student = $student[0];
-  $view->render();
+  try {
+    $student = $student->getById($id);
+    $view = new ChangePasswordStudentView();
+    $view->student = $student[0];
+    $view->render();
+  } catch (ValidationException $e) {
+    die($e->getMessage());
+  }
 }
 
 ?>
