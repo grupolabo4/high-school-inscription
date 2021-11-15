@@ -3,7 +3,7 @@
 require '../fw/fw.php';
 require '../views/IndexView.php';
 
-checkSession();
+checkNormalSession();
 $view = new IndexView();
 $view->render();
 

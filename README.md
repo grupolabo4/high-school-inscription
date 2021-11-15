@@ -23,5 +23,5 @@
 
 ### Inicio de sesion en entorno de prueba
 
-usuario: administrator
+usuario: administrator@sarasa.com
 password: sarasa

@@ -1,5 +1,6 @@
 <?php 
 
+require "../exceptions/ValidationException.php";
 class Administrators extends Model {
     
     public function getAll() {

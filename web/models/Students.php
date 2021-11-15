@@ -1,5 +1,7 @@
 <?php 
 
+require "../exceptions/ValidationException.php";
+
 class Students extends Model {
     
     public function getAll() {
@@ -15,6 +17,16 @@ class Students extends Model {
         
         $this->db->query("SELECT * FROM students WHERE id_student = $id LIMIT 1");
         return $this->db->fetchAll();
+    }
+
+    public function getByEmail($email) {
+
+        $this->validateString($email, 50, 7);
+        $this->db->query("SELECT * FROM students WHERE email = '$email' LIMIT 1");
+        if ( $this->db->numRows() != 1 ) throw new ValidationException("El estudiante no existe");
+
+        $this->db->query("SELECT * FROM students WHERE email = '$email'");
+        return $this->db->fetch();
     }
 
     public function create($name, $lastname, $email, $password, $identifier, $career) {

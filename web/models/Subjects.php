@@ -1,5 +1,7 @@
 <?php 
 
+require "../exceptions/ValidationException.php";
+
 class Subjects extends Model {
     
     public function getAll() {

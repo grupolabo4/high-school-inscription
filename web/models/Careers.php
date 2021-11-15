@@ -1,4 +1,7 @@
 <?php 
+
+require "../exceptions/ValidationException.php";
+
 class Careers extends Model {
     
     public function getAll() {
