@@ -1,6 +1,6 @@
 <?php 
 
-require "../exceptions/ValidationException.php";
+require_once "../exceptions/ValidationException.php";
 
 class Subjects extends Model {
     
@@ -17,6 +17,20 @@ class Subjects extends Model {
                             FROM subjects s
                             INNER JOIN subjects_careers sc
                             ON s.id_subject = sc.id_subject
+                            WHERE sc.id_career = $careerId");
+        return $this->db->fetchAll();
+    }
+    
+    public function getSubjectsAndStatusByStudentId($studentId, $careerId) {
+        $this->validateStudentId($studentId);
+        $this->validateCareerId($careerId);
+
+        $this->db->query("SELECT s.id_subject, name
+                            FROM subjects s
+                            LEFt JOIN subjects_careers sc
+                            ON s.id_subject = sc.id_subject
+                            -- LEFT JOIN students_subjects ss
+                            -- ON $studentId = ss.id_student
                             WHERE sc.id_career = $careerId");
         return $this->db->fetchAll();
     }
@@ -49,6 +63,14 @@ class Subjects extends Model {
         if ( $id < 1 ) throw new ValidationException("Tiene que ser mayor a 0");
 
         $aux = $this->db->query("SELECT * FROM subjects WHERE id_subject = $id LIMIT 1");
+        if ( $this->db->numRows() != 1 ) throw new ValidationException("La materia no existe");
+    }
+
+    public function validateStudentId($id) {
+        if ( !ctype_digit($id) ) throw new ValidationException("Tiene que ser un numero");
+        if ( $id < 1 ) throw new ValidationException("Tiene que ser mayor a 0");
+
+        $aux = $this->db->query("SELECT * FROM students WHERE id_student = $id LIMIT 1");
         if ( $this->db->numRows() != 1 ) throw new ValidationException("La materia no existe");
     }
 

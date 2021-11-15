@@ -1,6 +1,6 @@
 <?php 
 
-require "../exceptions/ValidationException.php";
+require_once "../exceptions/ValidationException.php";
 
 class Careers extends Model {
     
