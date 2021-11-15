@@ -15,6 +15,7 @@
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Email</th>
+                <th>Carrera</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -25,6 +26,7 @@
                   <td><?=$student['name']?></td>
                   <td><?=$student['lastname']?></td>
                   <td><?=$student['email']?></td>
+                  <td><?=$student['career']?></td>
                   <td>
                     <a href="cambiar-pass-alumno-<?=$student['id_student']?>" class="btn btn-primary">
                       Cambiar password

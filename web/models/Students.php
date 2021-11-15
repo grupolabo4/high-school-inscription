@@ -3,7 +3,9 @@
 class Students extends Model {
     
     public function getAll() {
-        $this->db->query("SELECT * FROM students LIMIT 50");
+        $this->db->query("SELECT s.id_student, s.identifier, s.name, s.lastname, s.email,  c.name as career
+                            FROM students s JOIN careers c 
+                            on s.id_career = c.id_career LIMIT 50");
         return $this->db->fetchAll();
     }
 
@@ -15,12 +17,13 @@ class Students extends Model {
         return $this->db->fetchAll();
     }
 
-    public function create($name, $lastname, $email, $password, $identifier) {
+    public function create($name, $lastname, $email, $password, $identifier, $career) {
 
         $this->validateString($name, 50);
         $this->validateString($lastname, 50);
         $this->validateString($email, 50, 7);
         $this->validateNumber($identifier);
+        $this->validateNumber($career);
 
         $this->db->query("SELECT * FROM students WHERE email = '$email' LIMIT 1");
         if ( $this->db->numRows() == 1 ) throw new ValidationException("El alumno ya existe");
@@ -32,8 +35,8 @@ class Students extends Model {
         $lastname = $this->db->escape($lastname);
         $email = $this->db->escape($email);
 
-        $this->db->query("INSERT INTO students (name, lastname, email, password, identifier)
-                            VALUES ('$name', '$lastname', '$email', '$password', '$identifier')");
+        $this->db->query("INSERT INTO students (name, lastname, email, password, identifier, id_career )
+                            VALUES ('$name', '$lastname', '$email', '$password', '$identifier', '$career')");
     }
 
     public function update($id, $name, $lastname, $email, $identifier) {
@@ -99,7 +102,4 @@ class Students extends Model {
         if ( substr($str, $max) ) throw new ValidationException("La longitud maxima es: $max");
     }
 }
-
-class ValidationException extends Exception {}
-
 ?>

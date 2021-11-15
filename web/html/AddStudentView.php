@@ -29,6 +29,16 @@
               <label for="identifier" class="form-label">Numero de legajo</label>
               <input type="number" name="identifier" class="form-control" id="identifier" min="1" required>
             </div>
+            <div class="mb-3">
+              <label for="career" class="form-label">Carrera</label>
+              <select name="career" class="form-control" id="career">
+                <?php foreach($this->careers as $career) { ?>
+                  <option value=<?=$career['id_career']?>>
+                    <?=$career['name']?>
+                  </option>
+                <?php } ?>
+              </select>
+            </div>
           </div>
           <div class="card-footer">
             <button type="submit" class="btn btn-success">Guardar</button>

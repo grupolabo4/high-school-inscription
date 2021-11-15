@@ -38,7 +38,4 @@ class Careers extends Model {
     }
     
 }
-
-class ValidationException extends Exception {}
-
 ?>

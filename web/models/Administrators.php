@@ -94,7 +94,4 @@ class Administrators extends Model {
         if ( substr($str, $max) ) throw new ValidationException("La longitud maxima es: $max");
     }
 }
-
-class ValidationException extends Exception {}
-
 ?>

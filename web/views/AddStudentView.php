@@ -1,6 +1,7 @@
 <?php
 
-class AddStudentView extends View { 
+class AddStudentView extends View {
+    public $careers;
 }
 
 ?>
