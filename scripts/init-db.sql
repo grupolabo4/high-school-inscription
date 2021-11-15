@@ -37,7 +37,7 @@ INSERT INTO `subjects` (id_subject, name, teacher) VALUES (36, 'Práctica Superv
 INSERT INTO `subjects` (id_subject, name, teacher) VALUES (37, 'Economía', 'Alberto Fernandez');
 INSERT INTO `subjects` (id_subject, name, teacher) VALUES (38, 'Proyecto Final', 'Pablo Echarri');
 INSERT INTO `subjects` (id_subject, name, teacher) VALUES (39, 'Aeronáutica I', 'Nestor Serravale');						
-INSERT INTO `subjects` (id_subject, name, teacher) VALUES (40, 'Química General', 'Fernando Bambi');							
+INSERT INTO `subjects` (id_subject, name, teacher) VALUES (40, 'Química', 'Fernando Bambi');							
 INSERT INTO `subjects` (id_subject, name, teacher) VALUES (41, 'Computación', 'Rocio Marengo');				
 INSERT INTO `subjects` (id_subject, name, teacher) VALUES (42, 'Aeronáutica II', 'Nestor Serravale');
 INSERT INTO `subjects` (id_subject, name, teacher) VALUES (43, 'Estructuras Aeronáuticas I', 'Julian Alvarez');	
@@ -174,4 +174,4 @@ INSERT INTO `subjects_careers` (id_subject, id_career) VALUES (81, 3);
 INSERT INTO `subjects_careers` (id_subject, id_career) VALUES (82, 3);
 INSERT INTO `subjects_careers` (id_subject, id_career) VALUES (83, 3);
 
-INSERT INTO `administrators` (id_administrator, name, lastname, email, password) VALUES (1, "administrator", "administrator", "administrator", "29987e08ab73577b171e3cd96a4c643387014c6d25e0c92d130908effcfd71be");
+INSERT INTO `administrators` (id_administrator, name, lastname, email, password) VALUES (1, "administrator", "administrator", "administrator@sarasa.com", "29987e08ab73577b171e3cd96a4c643387014c6d25e0c92d130908effcfd71be");
