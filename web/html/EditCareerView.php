@@ -11,8 +11,8 @@
           <div class="card-body">
             <div class="mb-3">
               <label for="name" class="form-label">Nombre</label>
-              <input type="text" name="name" value="<?php echo $this->career['name']?>" class="form-control" id="name" maxlength="50" required>
-              <input type="hidden" name="id" value="<?php echo $this->career['id_career']?>">
+              <input type="text" name="name" value="<?=htmlentities($this->career['name'])?>" class="form-control" id="name" maxlength="50" required>
+              <input type="hidden" name="id" value="<?=htmlentities($this->career['id_career'])?>">
             </div>
           </div>
           <div class="card-footer">

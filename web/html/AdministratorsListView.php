@@ -20,24 +20,21 @@
             <tbody>
               <?php foreach($this->administrators as $administrator) { ?>
                 <tr>
-                  <td><?=$administrator['name']?></td>
-                  <td><?=$administrator['lastname']?></td>
-                  <td><?=$administrator['email']?></td>
+                  <td><?=htmlentities($administrator['name'])?></td>
+                  <td><?=htmlentities($administrator['lastname'])?></td>
+                  <td><?=htmlentities($administrator['email'])?></td>
                   <td>
-                    <a href="cambiar-pass-admin-<?=$administrator['id_administrator']?>" class="btn btn-primary">
+                    <a href="cambiar-pass-admin-<?=htmlentities($administrator['id_administrator'])?>" class="btn btn-primary">
                       Cambiar password
                     </a>
-                    <a href="editar-admin-<?=$administrator['id_administrator']?>" class="btn btn-primary" title="Editar">
+                    <a href="editar-admin-<?=htmlentities($administrator['id_administrator'])?>" class="btn btn-primary" title="Editar">
                       <i class="fa fa-edit"> </i>
                     </a>
-                    <a href="#" class="btn btn-danger" title="Eliminar" onclick="onDelete(<?=$administrator['id_administrator']?>)">
+                    <a href="#" class="btn btn-danger" title="Eliminar" onclick="onDelete(<?=htmlentities($administrator['id_administrator'])?>)">
                       <i class="fa fa-trash"> </i>
                     </a>
-                    <!-- Tener en cuenta que estos links son solo demostrativos, ver la mejor forma
-                    de hacer que esto se vea bien, con botones o en una tabla por ejemplo -->
                   </td>
                 </tr>
-              <!-- Aca meterlo adentro de un link, o agregarle un boton al lado, como nos guste mas -->
               <?php } ?>
             </tbody>
           </table>

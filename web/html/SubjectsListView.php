@@ -14,18 +14,15 @@
                             <th>Materia</th>
                             <th>Profesor asignado</th>
                             <th>Acciones</th>
-                            <!-- Aca hay que decidir como editar estos datos siendo administrador
-                            puede ser boton "editar" que lleve a nueva pantalla o directamente permitir
-                            editarlo aca, como te guste mas -->
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($this->subjects as $subject) { ?>
                             <tr>
-                                <td><?=$subject['name']?></b>
-                                <td><?=$subject['teacher']?></td>
+                                <td><?=htmlentities($subject['name'])?></b>
+                                <td><?=htmlentities($subject['teacher'])?></td>
                                 <td>
-                                    <a href="editar-materia-<?=$subject['id_subject']?>-<?=$_GET['id']?>" class="btn btn-primary" title="Editar">
+                                    <a href="editar-materia-<?=htmlentities($subject['id_subject'])?>-<?=$_GET['id']?>" class="btn btn-primary" title="Editar">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </td>

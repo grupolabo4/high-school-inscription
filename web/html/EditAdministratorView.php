@@ -11,17 +11,17 @@
           <div class="card-body">
             <div class="mb-3">
               <label for="name" class="form-label">Nombre</label>
-              <input type="text" name="name" value="<?php echo $this->administrator['name']?>" class="form-control" id="name" maxlength="50" required>
+              <input type="text" name="name" value="<?=htmlentities($this->administrator['name'])?>" class="form-control" id="name" maxlength="50" required>
             </div>
             <div class="mb-3">
               <label for="lastname" class="form-label">Apellido</label>
-              <input type="text" name="lastname" value="<?php echo $this->administrator['lastname']?>" class="form-control" id="lastname" maxlength="50" required>
+              <input type="text" name="lastname" value="<?=htmlentities($this->administrator['lastname'])?>" class="form-control" id="lastname" maxlength="50" required>
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" name="email" value="<?php echo $this->administrator['email']?>" class="form-control" id="email" maxlength="50" required>
+              <input type="email" name="email" value="<?=htmlentities($this->administrator['email'])?>" class="form-control" id="email" maxlength="50" required>
             </div>
-            <input type="hidden" name="id" value="<?php echo $this->administrator['id_administrator']?>">
+            <input type="hidden" name="id" value="<?=htmlentities($this->administrator['id_administrator'])?>">
           </div>
           <div class="card-footer">
             <button type="submit" class="btn btn-success">Guardar</button>

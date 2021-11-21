@@ -12,7 +12,7 @@
             <div class="mb-3">
               <label for="password" class="form-label">Nuevo password</label>
               <input type="password" name="password" class="form-control" id="password" maxlength="16" required>
-              <input type="hidden" name="id" value="<?php echo $this->administrator['id_administrator']?>">
+              <input type="hidden" name="id" value="<?=htmlentities($this->administrator['id_administrator'])?>">
             </div>
           </div>
           <div class="card-footer">

@@ -22,26 +22,23 @@
             <tbody>
               <?php foreach($this->students as $student) { ?>
                 <tr>
-                  <td><?=$student['identifier']?></td>
-                  <td><?=$student['name']?></td>
-                  <td><?=$student['lastname']?></td>
-                  <td><?=$student['email']?></td>
-                  <td><?=$student['career']?></td>
+                  <td><?=htmlentities($student['identifier'])?></td>
+                  <td><?=htmlentities($student['name'])?></td>
+                  <td><?=htmlentities($student['lastname'])?></td>
+                  <td><?=htmlentities($student['email'])?></td>
+                  <td><?=htmlentities($student['career'])?></td>
                   <td>
-                    <a href="cambiar-pass-alumno-<?=$student['id_student']?>" class="btn btn-primary">
+                    <a href="cambiar-pass-alumno-<?=htmlentities($student['id_student'])?>" class="btn btn-primary">
                       Cambiar password
                     </a>
-                    <a href="editar-alumno-<?=$student['id_student']?>" class="btn btn-primary" title="Editar">
+                    <a href="editar-alumno-<?=htmlentities($student['id_student'])?>" class="btn btn-primary" title="Editar">
                       <i class="fa fa-edit"> </i>
                     </a>
-                    <a href="#" class="btn btn-danger" title="Eliminar" onclick="onDelete(<?=$student['id_student']?>)">
+                    <a href="#" class="btn btn-danger" title="Eliminar" onclick="onDelete(<?=htmlentities($student['id_student'])?>)">
                       <i class="fa fa-trash"> </i>
                     </a>
-                    <!-- Tener en cuenta que estos links son solo demostrativos, ver la mejor forma
-                    de hacer que esto se vea bien, con botones o en una tabla por ejemplo -->
                   </td>
                 </tr>
-              <!-- Aca meterlo adentro de un link, o agregarle un boton al lado, como nos guste mas -->
               <?php } ?>
             </tbody>
           </table>

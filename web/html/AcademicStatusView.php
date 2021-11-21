@@ -18,8 +18,8 @@
                     <tbody>
                         <?php foreach($this->subjects as $subject) { ?>
                             <tr>
-                                <td><?=$subject['name']?></b>
-                                <td><?=$subject['status']?></b>
+                                <td><?=htmlentities($subject['name'])?></b>
+                                <td><?=htmlentities($subject['status'])?></b>
                             </tr>
                         <?php } ?>
                     </tbody>

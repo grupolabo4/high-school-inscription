@@ -33,8 +33,8 @@
               <label for="career" class="form-label">Carrera</label>
               <select name="career" class="form-control" id="career">
                 <?php foreach($this->careers as $career) { ?>
-                  <option value=<?=$career['id_career']?>>
-                    <?=$career['name']?>
+                  <option value=<?=htmlentities($career['id_career'])?>>
+                    <?=htmlentities($career['name'])?>
                   </option>
                 <?php } ?>
               </select>

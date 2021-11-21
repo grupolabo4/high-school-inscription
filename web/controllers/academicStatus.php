@@ -13,8 +13,7 @@ $students = new Students();
 if ( !isset($id) ) die("El campo no existe");
 
 try {
-  $student = $students->getById($id);
-  $subjectsList = $subjects->getSubjectsAndStatusByStudentId($student[0]['id_student']);
+  $subjectsList = $subjects->getSubjectsAndStatusByStudentId($id);
   $view = new AcademicStatusView();
   $view->subjects = $subjectsList;
   $view->render();

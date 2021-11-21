@@ -92,7 +92,7 @@ class Subjects extends Model {
         if ( $id < 1 ) throw new ValidationException("Tiene que ser mayor a 0");
 
         $aux = $this->db->query("SELECT * FROM students WHERE id_student = $id LIMIT 1");
-        if ( $this->db->numRows() != 1 ) throw new ValidationException("La materia no existe");
+        if ( $this->db->numRows() != 1 ) throw new ValidationException("El alumno no existe");
     }
 
     public function validateCareerId($id) {

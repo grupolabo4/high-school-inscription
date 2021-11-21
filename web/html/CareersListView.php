@@ -18,17 +18,16 @@
                     <tbody>
                         <?php foreach($this->careers as $career) { ?>
                             <tr>
-                                <td><?=$career['name']?></td>
+                                <td><?=htmlentities($career['name'])?></td>
                                 <td>
-                                    <a href="materias-<?=$career['id_career']?>" class="btn btn-success" title="Ver materias">
+                                    <a href="materias-<?=htmlentities($career['id_career'])?>" class="btn btn-success" title="Ver materias">
                                         <i class="fa fa-search"></i>
                                     </a>
-                                    <a href="editar-carrera-<?=$career['id_career']?>" class="btn btn-primary" title="Editar">
+                                    <a href="editar-carrera-<?=htmlentities($career['id_career'])?>" class="btn btn-primary" title="Editar">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </td>
                             </tr>
-                        <!-- Aca meterlo adentro de un link, o agregarle un boton al lado, como nos guste mas -->
                         <?php } ?>
                     </tbody>
                 </table>
