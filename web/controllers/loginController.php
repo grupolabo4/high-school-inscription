@@ -24,7 +24,11 @@ if (count($_POST) > 0) {
       $user = $students->getByEmail($email);
     }
     if ($user['password'] == $password) {
-      createSession($user['id_administrator'], $rol);
+      if ($rol == "admin") {
+        createSession($user['id_administrator'], $rol);
+      } else {
+        createSession($user['id_student'], $rol);
+      }
     } else {
       die("password incorrecta");
     }
