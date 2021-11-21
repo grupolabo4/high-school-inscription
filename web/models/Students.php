@@ -102,8 +102,7 @@ class Students extends Model {
     }
 
     public function validateID($id) {
-        if ( !ctype_digit($id) ) throw new ValidationException("Tiene que ser un numero");
-        if ( $id < 1 ) throw new ValidationException("Tiene que ser mayor a 0");
+        $this->validateNumber($id);
 
         $aux = $this->db->query("SELECT * FROM students WHERE id_student = $id LIMIT 1");
         if ( $this->db->numRows() != 1 ) throw new ValidationException("El alumno no existe");
