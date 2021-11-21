@@ -21,17 +21,13 @@ class Subjects extends Model {
         return $this->db->fetchAll();
     }
     
-    public function getSubjectsAndStatusByStudentId($studentId, $careerId) {
+    public function getSubjectsAndStatusByStudentId($studentId) {
         $this->validateStudentId($studentId);
-        $this->validateCareerId($careerId);
 
-        $this->db->query("SELECT s.id_subject, name
-                            FROM subjects s
-                            LEFt JOIN subjects_careers sc
-                            ON s.id_subject = sc.id_subject
-                            -- LEFT JOIN students_subjects ss
-                            -- ON $studentId = ss.id_student
-                            WHERE sc.id_career = $careerId");
+        $this->db->query("SELECT s.id_subject, s.name, sb.status
+                            FROM students_subjects sb, subjects s
+                            WHERE sb.id_student = $studentId
+                            AND s.id_subject = sb.id_subject");
         return $this->db->fetchAll();
     }
 
@@ -56,6 +52,31 @@ class Subjects extends Model {
                             SET name = '$name',
                             teacher = '$teacher'
                             WHERE id_subject = $id");
+    }
+
+    public function enrollToSubject($studentId, $subjectId) {
+        $this->validateStudentId($studentId);
+        $this->validateID($subjectId);
+
+        $studentId = $this->db->escape($studentId);
+        $subjectId = $this->db->escape($subjectId);
+
+        $this->db->query("INSERT INTO students_subjects
+                            (id_student, id_subject, status)
+                            VALUES ('$studentId', '$subjectId', 'Inscripto')");
+    }
+
+    public function approveSubjectToStudent($studentId, $subjectId) {
+        $this->validateStudentId($studentId);
+        $this->validateID($subjectId);
+
+        $studentId = $this->db->escape($studentId);
+        $subjectId = $this->db->escape($subjectId);
+
+        $this->db->query("UPDATE students_subjects
+                            SET status = 'Aprobado'
+                            WHERE id_student = $studentId 
+                            AND id_subject = $subjectId");
     }
 
     public function validateID($id) {
