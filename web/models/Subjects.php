@@ -88,19 +88,13 @@ class Subjects extends Model {
     }
 
     public function validateStudentId($id) {
-        if ( !ctype_digit($id) ) throw new ValidationException("Tiene que ser un numero");
-        if ( $id < 1 ) throw new ValidationException("Tiene que ser mayor a 0");
-
-        $aux = $this->db->query("SELECT * FROM students WHERE id_student = $id LIMIT 1");
-        if ( $this->db->numRows() != 1 ) throw new ValidationException("El alumno no existe");
+        $students = new Students();
+        $students->validateID($id);
     }
 
     public function validateCareerId($id) {
-        if ( !ctype_digit($id) ) throw new ValidationException("Tiene que ser un numero");
-        if ( $id < 1 ) throw new ValidationException("Tiene que ser mayor a 0");
-
-        $aux = $this->db->query("SELECT * FROM careers WHERE id_career = $id LIMIT 1");
-        if ( $this->db->numRows() != 1 ) throw new ValidationException("La carrera no existe");
+        $careers = new Careers();
+        $careers->validateID($id);
     }
 
     public function validateString($str, $max = 10000, $min = 1) {
