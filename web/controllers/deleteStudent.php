@@ -12,7 +12,7 @@ if ( !isset($id) ) die("El campo no existe");
 try {
   $student = $student->deleteById($id);
   header("Location: alumnos");
-} catch (ValidationException) {
+} catch (ValidationException $e) {
   die($e->getMessage());
 }
 
