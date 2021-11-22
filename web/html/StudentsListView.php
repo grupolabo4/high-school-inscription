@@ -31,6 +31,9 @@
                     <a href="cambiar-pass-alumno-<?=htmlentities($student['id_student'])?>" class="btn btn-primary">
                       Cambiar password
                     </a>
+                    <a href="estado-academico-<?=htmlentities($student['id_student'])?>" class="btn btn-success" title="Ver estado academico">
+                      <i class="fa fa-search"> </i>
+                    </a>
                     <a href="editar-alumno-<?=htmlentities($student['id_student'])?>" class="btn btn-primary" title="Editar">
                       <i class="fa fa-edit"> </i>
                     </a>

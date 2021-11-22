@@ -34,15 +34,6 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="inicio">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="carreras">Carreras</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="administradores">Administradores</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="alumnos">Alumnos</a>
-        </li>
         <!-- Con esto nada todavia
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

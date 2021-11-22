@@ -13,6 +13,9 @@
                         <tr>
                             <th>Materia</th>
                             <th>Estado</th>
+                            <?php if ($this->is_admin) { ?>
+                                <th>Acciones</th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -20,6 +23,13 @@
                             <tr>
                                 <td><?=htmlentities($subject['name'])?></b>
                                 <td><?=htmlentities($subject['status'])?></b>
+                                <?php if ($this->is_admin) { ?>
+                                    <td>
+                                        <a href="aprobar-cursada-<?=htmlentities($this->id)?>-<?=htmlentities($subject['id_subject'])?>" class="btn btn-success" title="Aprobar">
+                                            <i class="fa fa-check"></i>
+                                        </a>
+                                    </td>
+                                <?php } ?>
                             </tr>
                         <?php } ?>
                     </tbody>

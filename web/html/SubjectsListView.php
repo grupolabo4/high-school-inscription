@@ -22,9 +22,15 @@
                                 <td><?=htmlentities($subject['name'])?></b>
                                 <td><?=htmlentities($subject['teacher'])?></td>
                                 <td>
-                                    <a href="editar-materia-<?=htmlentities($subject['id_subject'])?>-<?=$_GET['id']?>" class="btn btn-primary" title="Editar">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
+                                    <?php if ($this->is_admin) { ?>
+                                        <a href="editar-materia-<?=htmlentities($subject['id_subject'])?>-<?=$_GET['id']?>" class="btn btn-primary" title="Editar">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    <?php } else { ?>
+                                        <a href="inscribirse-<?=htmlentities($this->user_id)?>-<?=htmlentities($subject['id_subject'])?>" class="btn btn-success" title="Inscribirse">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    <?php } ?>
                                 </td>
                             </tr>
                         <?php } ?>

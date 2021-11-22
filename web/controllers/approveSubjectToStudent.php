@@ -15,8 +15,7 @@ if ( !isset($subjectId) ) die("El campo no existe");
 try {
   $subjects = new Subjects();
   $subjects->approveSubjectToStudent($studentId, $subjectId);
-  // TODO aca decidir si redirigimos o solo mostramos un cartelito que fue inscripto y fue
-  // decidir como se vea mejor cuando hagamos el front
+  header("Location: estado-academico-$studentId");
 } catch (ValidationException $e) {
   die($e->getMessage());
 }

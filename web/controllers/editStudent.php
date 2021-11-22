@@ -4,7 +4,7 @@ require '../fw/fw.php';
 require '../models/Students.php';
 require '../views/EditStudentView.php';
 
-checkSession();
+checkNormalSession();
 
 if (count($_POST) > 0) {
   $id = $_POST['id'];
