@@ -39,6 +39,30 @@ class Subjects extends Model {
         return $this->db->fetchAll();
     }
 
+    public function getByName($name) {
+
+        $this->validateString($name, 80);
+        $name = $this->db->escape($name);
+
+        $this->db->query("SELECT * FROM subjects WHERE name = '$name' LIMIT 1");
+        return $this->db->fetch();
+    }
+
+    public function create($name, $teacher) {
+        
+        $this->validateString($name, 80);
+        $this->validateString($teacher, 50);
+
+        $aux = $this->db->query("SELECT * FROM subjects WHERE name = '$name' LIMIT 1");
+        if ( $this->db->numRows() == 1 ) throw new ValidationException("La materia ya existe");
+
+        $name = $this->db->escape($name);
+        $teacher = $this->db->escape($teacher);
+
+        $this->db->query("INSERT INTO subjects (name, teacher)
+                            VALUES ('$name', '$teacher')");
+    }
+
     public function updateSubject($id, $name, $teacher) {
 
         $this->validateID($id);
@@ -51,6 +75,14 @@ class Subjects extends Model {
         $this->db->query("UPDATE subjects 
                             SET name = '$name',
                             teacher = '$teacher'
+                            WHERE id_subject = $id");
+    }
+
+    public function deleteById($id) {
+
+        $this->validateID($id);
+
+        $this->db->query("DELETE FROM subjects 
                             WHERE id_subject = $id");
     }
 

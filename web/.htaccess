@@ -10,7 +10,9 @@ RewriteRule ^carreras$ controllers/careersList.php
 RewriteRule ^editar-carrera-([0-9]+)$ controllers/editCareer.php?id=$1
 
 RewriteRule ^materias-([0-9]+)$ controllers/subjectsList.php?id=$1
+RewriteRule ^agregar-materia-([0-9]+)$ controllers/addSubject.php?careerId=$1
 RewriteRule ^editar-materia-([0-9]+)-([0-9]+)$ controllers/editSubject.php?id=$1&careerId=$2
+RewriteRule ^borrar-materia-([0-9]+)-([0-9]+)$ controllers/deleteSubject.php?id=$1&careerId=$2
 
 RewriteRule ^administradores$ controllers/administratorsList.php
 RewriteRule ^agregar-admin$ controllers/addAdministrator.php

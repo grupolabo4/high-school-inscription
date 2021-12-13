@@ -26,6 +26,9 @@
                                         <a href="editar-materia-<?=htmlentities($subject['id_subject'])?>-<?=$_GET['id']?>" class="btn btn-primary" title="Editar">
                                             <i class="fa fa-edit"></i>
                                         </a>
+                                        <a href="#" class="btn btn-danger" title="Eliminar" onclick="onDelete(<?=htmlentities($subject['id_subject'])?>, <?=$_GET['id']?>)">
+                                            <i class="fa fa-trash"> </i>
+                                        </a>
                                     <?php } else { ?>
                                         <a href="inscribirse-<?=htmlentities($this->user_id)?>-<?=htmlentities($subject['id_subject'])?>" class="btn btn-success" title="Inscribirse">
                                             <i class="fa fa-pencil"></i>
@@ -37,10 +40,22 @@
                     </tbody>
                 </table>
             </div>
+            <?php if ($this->is_admin) { ?>
+                <div class="card-footer">
+                    <a href="agregar-materia-<?=$_GET['id']?>" class="btn btn-success">Agregar materia</a>
+                <div>
+            <?php } ?>
         </div>
     </div>
   </body>
   <script>
+        function onDelete(subjectId, careerId) {
+            console.log("materia", subjectId);
+            console.log("carrera", careerId);
+            if (confirm("¿Esta seguro que quiere borrar la materia?")) {
+                window.location = `borrar-materia-${subjectId}-${careerId}`;
+            }
+        }
       $(document).ready( function () {
           $('#myTable').DataTable();
       } );
