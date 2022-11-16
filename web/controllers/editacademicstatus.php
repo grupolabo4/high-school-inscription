@@ -15,7 +15,7 @@ $ss = new Students_Subjects();
 if (!isset($_POST['submit'])) {
 
 
-$ss = $ss->getById($id);
+$ss = $ss->getOneById($id);
 $view = new EditAcademicStatusView();
 $view->students_subjects = $ss;
 $view->render();
@@ -42,7 +42,7 @@ if(!$value2 && !$value1){
   $status = "Inscripto";
   $ss->updateStatus($id,$status);
 }
-  $ss = $ss->getById($id);
+  $ss = $ss->getOneById($id);
   $view = new EditAcademicStatusView();
   $view->students_subjects = $ss;
   $view->render();

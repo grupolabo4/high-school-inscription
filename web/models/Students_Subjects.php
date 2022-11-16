@@ -12,13 +12,13 @@ class Students_Subjects extends Model {
     }
 
     public function getOneById($id) {
-        $this->validateID($id);
-        $this->db->query("SELECT ss.name, ss.status, ss.value1, ss.value2 FROM `students_subjects` as ss join subjects as s on ss.id_subject = s.id_subject where ss.id_student = $id");
+      //  $this->validateID($id);
+        $this->db->query("SELECT ss.id, ss.status, ss.value1, ss.value2 FROM `students_subjects` as ss join subjects as s on ss.id_subject = s.id_subject where ss.id = $id");
         return $this->db->fetchAll();
     }
     public function updateValue1($id, $value) {
 
-        $this->validateID($id);
+       // $this->validateID($id);
       // falta agregar validacion de la nota 
 
         $name = $this->db->escape($name);
@@ -28,7 +28,7 @@ class Students_Subjects extends Model {
 
     public function updateValue2($id, $value) {
 
-        $this->validateID($id);
+       // $this->validateID($id);
          // falta agregar validacion de la nota 
 
         $name = $this->db->escape($name);
@@ -38,7 +38,7 @@ class Students_Subjects extends Model {
     
     public function updateStatus($id, $s) {
 
-        $this->validateID($id);
+      //  $this->validateID($id);
         $name = $this->db->escape($name);
 
         $this->db->query("UPDATE students_subjects SET status = '$s' WHERE id = $id");
