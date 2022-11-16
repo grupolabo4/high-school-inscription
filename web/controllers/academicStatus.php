@@ -3,20 +3,20 @@
 require '../fw/fw.php';
 require '../models/Subjects.php';
 require '../models/Students.php';
+require '../models/Students_Subjects.php';
 require '../views/AcademicStatusView.php';
 
 checkNormalSession();
 $id = $_GET['id'];
 $is_admin = $_SESSION['x-session'] == "admin";
-$subjects = new Subjects();
-$students = new Students();
+$students_subjects = new Students_Subjects();
 
 if ( !isset($id) ) die("El campo no existe");
 
 try {
-  $subjectsList = $subjects->getSubjectsAndStatusByStudentId($id);
+  $subjectsList = $students_subjects->getById($id);
   $view = new AcademicStatusView();
-  $view->subjects = $subjectsList;
+  $view->students_subjects = $subjectsList;
   $view->is_admin = $is_admin;
   $view->id = $id;
   $view->render();

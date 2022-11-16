@@ -1,7 +1,7 @@
 <?php
 
 class AcademicStatusView extends View { 
-    public $subjects;
+    public $students_subjects;
     public $id;
     public $is_admin;
 }

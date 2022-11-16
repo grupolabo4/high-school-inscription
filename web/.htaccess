@@ -27,6 +27,8 @@ RewriteRule ^borrar-alumno-([0-9]+)$ controllers/deleteStudent.php?id=$1
 RewriteRule ^cambiar-pass-alumno-([0-9]+)$ controllers/changePasswordStudent.php?id=$1
 
 RewriteRule ^estado-academico-([0-9]+)$ controllers/academicStatus.php?id=$1
+RewriteRule ^editar-estado-academico-([0-9]+)$ controllers/editacademicstatus.php?id=$1
+
 
 RewriteRule ^inscribirse-([0-9]+)-([0-9]+)$ controllers/enrollToSubject.php?id_student=$1&id_subject=$2
 RewriteRule ^aprobar-cursada-([0-9]+)-([0-9]+)$ controllers/approveSubjectToStudent.php?id_student=$1&id_subject=$2

@@ -16,21 +16,20 @@
                             <th>Nota cursada</th>
                             <th>Nota final</th>
                             <?php if ($this->is_admin) { ?>
-                            <th></th>
+                                <th>Agregar Nota</th>
                             <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($this->students_subjects as $subject) { ?>
+                        <?php foreach($this->subjects as $subject) { ?>
                             <tr>
                                 <td><?=htmlentities($subject['name'])?></b>
                                 <td><?=htmlentities($subject['status'])?></b>
                                 <td><?=htmlentities($subject['value1'])?></b>
                                 <td><?=htmlentities($subject['value2'])?></b>
-
                                 <?php if ($this->is_admin) { ?>
                                     <td>
-                                        <a href="editar-estado-academico-<?=htmlentities($subject['id'])?>" class="btn btn-success" title="Editar">
+                                        <a href="aprobar-cursada-<?=htmlentities($this->id)?>-<?=htmlentities($subject['id_subject'])?>" class="btn btn-success" title="Aprobar">
                                             <i class="fa fa-check"></i>
                                         </a>
                                     </td>

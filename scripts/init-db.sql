@@ -86,6 +86,26 @@ INSERT INTO `careers` (id_career, name) VALUES (1, 'Ingeniería Electrónica');
 INSERT INTO `careers` (id_career, name) VALUES (2, 'Ingeniería Aeronáutica');
 INSERT INTO `careers` (id_career, name) VALUES (3, 'Tecnicatura Universitaria en Programación');
 
+
+INSERT INTO `students` (id_student, id_career,identifier, name, lastname, email, password) VALUES (1,3,26070, "Nicolas","Schleicher" ,"nicosc41@gmail.com","29987e08ab73577b171e3cd96a4c643387014c6d25e0c92d130908effcfd71be");
+INSERT INTO `students` (id_student, id_career,identifier, name, lastname, email, password) VALUES (2,1,25492,"Jose" ,"Ramon" ,"ramon@gmail.com","29987e08ab73577b171e3cd96a4c643387014c6d25e0c92d130908effcfd71be");
+
+
+
+INSERT INTO `students_subjects` (id_student, id_subject,status) VALUES (1, 1, "inscripto");
+INSERT INTO `students_subjects` (id_student, id_subject,status) VALUES (1, 2, "inscripto");
+INSERT INTO `students_subjects` (id_student, id_subject,status) VALUES (1, 3, "inscripto");
+INSERT INTO `students_subjects` (id_student, id_subject,status) VALUES (1, 4, "inscripto");
+INSERT INTO `students_subjects` (id_student, id_subject,status) VALUES (1, 5, "inscripto");
+INSERT INTO `students_subjects` (id_student, id_subject,status) VALUES (1, 6, "inscripto");
+INSERT INTO `students_subjects` (id_student, id_subject,status) VALUES (1, 7, "inscripto");
+INSERT INTO `students_subjects` (id_student, id_subject,status) VALUES (1, 8, "inscripto");
+INSERT INTO `students_subjects` (id_student, id_subject,status) VALUES (1, 9, "inscripto");
+
+
+
+
+
 INSERT INTO `subjects_careers` (id_subject, id_career) VALUES (1, 1);
 INSERT INTO `subjects_careers` (id_subject, id_career) VALUES (2, 1);
 INSERT INTO `subjects_careers` (id_subject, id_career) VALUES (3, 1);
