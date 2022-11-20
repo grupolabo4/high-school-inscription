@@ -30,8 +30,8 @@
 
                                 <?php if ($this->is_admin) { ?>
                                     <td>
-                                        <a href="editar-estado-academico-<?=htmlentities($subject['id'])?>" class="btn btn-success" title="Editar">
-                                            <i class="fa fa-check"></i>
+                                        <a href="editar-estado-academico-<?=htmlentities($subject['id'])?>" class="btn btn-primary" title="Editar">
+                                            <i class="fa fa-edit"></i>
                                         </a>
                                     </td>
                                 <?php } ?>
