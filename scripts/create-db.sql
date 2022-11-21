@@ -1,3 +1,5 @@
+DATABASE lab4 CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 CREATE TABLE `administrators` (
   `id_administrator` int UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` char(50) NOT NULL,
@@ -23,7 +25,7 @@ CREATE TABLE `students` (
   FOREIGN KEY (id_career) 
   REFERENCES careers(id_career)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+/*
 CREATE TABLE `teachers` (
   `id_teacher` int UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `id_career` int UNSIGNED NOT NULL,
@@ -32,7 +34,7 @@ CREATE TABLE `teachers` (
   `email` char(50) NOT NULL UNIQUE,
   `password` char(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+*/
 
 CREATE TABLE `subjects` (
   `id_subject` int UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -62,7 +64,7 @@ CREATE TABLE `correlatives` (
   REFERENCES subjects(id_subject)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+/*
 CREATE TABLE `teacher_subjects` (
   `id` int UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `id_teacher` int UNSIGNED NOT NULL,
@@ -72,7 +74,7 @@ CREATE TABLE `teacher_subjects` (
   FOREIGN KEY (id_subject) 
   REFERENCES subjects(id_subject)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+*/
 
 CREATE TABLE `students_subjects` (
   `id` int UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
