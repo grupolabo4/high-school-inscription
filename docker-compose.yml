@@ -13,7 +13,11 @@ services:
     image: mysql:8.0
     ports: 
         - 3306:3306
-    command: --default-authentication-plugin=mysql_native_password
+    command: >
+          bash -c "
+          chmod 644 /etc/mysql/conf.d/*.cnf
+          && /entrypoint.sh mysqld
+          "
     environment:
         MYSQL_DATABASE: labo4
         MYSQL_ROOT_PASSWORD: test 

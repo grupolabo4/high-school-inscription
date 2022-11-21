@@ -1,27 +1,33 @@
-<?php 
+<?php
 
 require_once "../exceptions/ValidationException.php";
 
-class Subjects extends Model {
-    
-    public function getAll() {
+class Subjects extends Model
+{
+
+    public function getAll()
+    {
         $this->db->query("SELECT * FROM subjects LIMIT 50");
         return $this->db->fetchAll();
     }
 
-    public function getSubjectByCareerId($careerId) {
-        
+    public function getSubjectByCareerId($careerId)
+    {
+
         $this->validateCareerId($careerId);
 
-        $this->db->query("SELECT s.id_subject, name, teacher 
+        $this->db->query("SELECT s.id_subject, s.name, CONCAT(t.name, ' ', t.lastname) AS teacher
                             FROM subjects s
                             INNER JOIN subjects_careers sc
                             ON s.id_subject = sc.id_subject
+                            INNER JOIN teachers t
+                            ON s.id_teacher = t.id_teacher
                             WHERE sc.id_career = $careerId");
         return $this->db->fetchAll();
     }
-    
-    public function getSubjectsAndStatusByStudentId($studentId) {
+
+    public function getSubjectsAndStatusByStudentId($studentId)
+    {
         $this->validateStudentId($studentId);
 
         $this->db->query("SELECT s.id_subject, s.name, sb.status
@@ -31,7 +37,8 @@ class Subjects extends Model {
         return $this->db->fetchAll();
     }
 
-    public function getById($id) {
+    public function getById($id)
+    {
 
         $this->validateID($id);
 
@@ -39,7 +46,8 @@ class Subjects extends Model {
         return $this->db->fetchAll();
     }
 
-    public function getByName($name) {
+    public function getByName($name)
+    {
 
         $this->validateString($name, 80);
         $name = $this->db->escape($name);
@@ -48,13 +56,14 @@ class Subjects extends Model {
         return $this->db->fetch();
     }
 
-    public function create($name, $teacher) {
-        
+    public function create($name, $teacher)
+    {
+
         $this->validateString($name, 80);
         $this->validateString($teacher, 50);
 
         $aux = $this->db->query("SELECT * FROM subjects WHERE name = '$name' LIMIT 1");
-        if ( $this->db->numRows() == 1 ) throw new ValidationException("La materia ya existe");
+        if ($this->db->numRows() == 1) throw new ValidationException("La materia ya existe");
 
         $name = $this->db->escape($name);
         $teacher = $this->db->escape($teacher);
@@ -63,7 +72,8 @@ class Subjects extends Model {
                             VALUES ('$name', '$teacher')");
     }
 
-    public function updateSubject($id, $name, $teacher) {
+    public function updateSubject($id, $name, $teacher)
+    {
 
         $this->validateID($id);
         $this->validateString($name, 80);
@@ -78,7 +88,8 @@ class Subjects extends Model {
                             WHERE id_subject = $id");
     }
 
-    public function deleteById($id) {
+    public function deleteById($id)
+    {
 
         $this->validateID($id);
 
@@ -86,7 +97,8 @@ class Subjects extends Model {
                             WHERE id_subject = $id");
     }
 
-    public function enrollToSubject($studentId, $subjectId) {
+    public function enrollToSubject($studentId, $subjectId)
+    {
         $this->validateStudentId($studentId);
         $this->validateID($subjectId);
 
@@ -98,7 +110,8 @@ class Subjects extends Model {
                             VALUES ('$studentId', '$subjectId', 'Inscripto')");
     }
 
-    public function approveSubjectToStudent($studentId, $subjectId) {
+    public function approveSubjectToStudent($studentId, $subjectId)
+    {
         $this->validateStudentId($studentId);
         $this->validateID($subjectId);
 
@@ -111,28 +124,30 @@ class Subjects extends Model {
                             AND id_subject = $subjectId");
     }
 
-    public function validateID($id) {
-        if ( !ctype_digit($id) ) throw new ValidationException("Tiene que ser un numero");
-        if ( $id < 1 ) throw new ValidationException("Tiene que ser mayor a 0");
+    public function validateID($id)
+    {
+        if (!ctype_digit($id)) throw new ValidationException("Tiene que ser un numero");
+        if ($id < 1) throw new ValidationException("Tiene que ser mayor a 0");
 
         $aux = $this->db->query("SELECT * FROM subjects WHERE id_subject = $id LIMIT 1");
-        if ( $this->db->numRows() != 1 ) throw new ValidationException("La materia no existe");
+        if ($this->db->numRows() != 1) throw new ValidationException("La materia no existe");
     }
 
-    public function validateStudentId($id) {
+    public function validateStudentId($id)
+    {
         $students = new Students();
         $students->validateID($id);
     }
 
-    public function validateCareerId($id) {
+    public function validateCareerId($id)
+    {
         $careers = new Careers();
         $careers->validateID($id);
     }
 
-    public function validateString($str, $max = 10000, $min = 1) {
-        if ( strlen($str) < $min ) throw new ValidationException("La longitud minima es: $min");
-        if ( substr($str, $max) ) throw new ValidationException("La longitud maxima es: $max");
+    public function validateString($str, $max = 10000, $min = 1)
+    {
+        if (strlen($str) < $min) throw new ValidationException("La longitud minima es: $min");
+        if (substr($str, $max)) throw new ValidationException("La longitud maxima es: $max");
     }
 }
-
-?>
